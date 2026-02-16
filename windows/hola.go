@@ -25,11 +25,13 @@ func main(){
 
 	sendTools.Send("Enviando datos....")
 	time.Sleep(10*time.Second)
-	dat, err := os.ReadFile("info.txt")
+	datos, err := os.ReadFile("info.txt")
 	if(err != nil){
 		fmt.Println(err)
 	}
-	re := sendTools.Send(strings.ReplaceAll(string(dat), " ", ""))
+	rep := strings.ReplaceAll(string(datos), " ", "")
+	fmt.Println(rep)
+	re := sendTools.Send(rep)
 	fmt.Println(re)
 		
 	

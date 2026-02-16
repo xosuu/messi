@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"strings"
+	
 )
 
 
@@ -27,7 +27,7 @@ func Send(dataToSend string)bool{
 	
 
 
-	gson, _  := json.Marshal(Data{UserId: id, Text: strings.ReplaceAll(dataToSend, " ", "")})
+	gson, _  := json.Marshal(Data{UserId: id, Text: dataToSend})
 	fmt.Println(string(gson))
 	
 	var _ Data = Data{UserId: id, Text: dataToSend}
