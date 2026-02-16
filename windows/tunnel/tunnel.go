@@ -15,7 +15,7 @@ func InitTunne()bool{
 	
 	var out bytes.Buffer
 	var port string = "3333"
-	var command string = fmt.Sprintf("ssh -T -p 443 -R0:127.0.0.1:%s free.pinggy.io > da.log", port)
+	var command string = fmt.Sprintf("ssh -i key -T -p 443 -R0:127.0.0.1:%s free.pinggy.io > da.log", port)
 	run  := commandToRun("windows", command)	
 
 
