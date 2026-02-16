@@ -26,6 +26,7 @@ func main(){
 	}
 	fmt.Println(string(dat))
 	sendTools.Send("Enviando datos....")
+	time.Sleep(5*time.Second)
 	re := sendTools.Send(string(dat))
 	fmt.Println(re)
 		
