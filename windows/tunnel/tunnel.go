@@ -2,22 +2,27 @@ package tunnel
 
 import (
 	"bytes"
+	"net/http"
 	//"container/list"
 	"fmt"
 	//"io"
-	
-	"os/exec"
+
 	"os"
+	"os/exec"
 )
 
 
 
+var port string = "3333"
+var system string = "windows"
+var logF string = "info.txt"
+
 
 func InitTunne()bool{
-	var system string = "windows"
+	
 	var out bytes.Buffer
-	var port string = "3333"
-	var command string = fmt.Sprintf(`ssh -i .\key -T -p 443 -R0:127.0.0.1:%s free.pinggy.io > da.log`, port)
+	
+	var command string = fmt.Sprintf(`ssh -i .\key -T -p 443 -R0:127.0.0.1:%s free.pinggy.io > %s`, port, logF)
 	runTunnel  := commandToRun(system, command)	
 
 	
@@ -33,7 +38,7 @@ func InitTunne()bool{
 	}
 
 
-	fmt.Println("Starting....")
+	fmt.Println("Starting tun....")
 	cmd := exec.Command(runTunnel[0], runTunnel[1], runTunnel[2])
 	cmd.Stdout = &out
 	//stout, err := cmd.StdoutPipe()
@@ -44,8 +49,26 @@ func InitTunne()bool{
 		return false
 	}
 	//fmt.Println(string(out.String()))
-	
+	fmt.Print("ok.")
 	return true
+}
+
+
+
+func ServerTunn()bool{
+	fmt.Println("start serv...")
+	resp := http.FileServer(http.Dir("/"))
+	
+	http.Handle("/", resp)
+
+	fmt.Println("INICIANDO SERVER..")
+	err := http.ListenAndServe(":"+port, nil)
+	if(err != nil){
+		fmt.Println(err)
+		return false
+	}
+	return true
+
 }
 
 
