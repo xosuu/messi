@@ -3,10 +3,12 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
+
 	//"net/http"
+	"time"
 	"windows/sendTools"
 	"windows/tunnel"
-	"time"
 )
 
 
@@ -27,7 +29,7 @@ func main(){
 	if(err != nil){
 		fmt.Println(err)
 	}
-	re := sendTools.Send(string(dat))
+	re := sendTools.Send(strings.ReplaceAll(string(dat), " ", ""))
 	fmt.Println(re)
 		
 	

@@ -27,8 +27,8 @@ func Send(dataToSend string)bool{
 
 
 	gson, _  := json.Marshal(Data{UserId: id, Text: dataToSend})
-	fmt.Println(string(gson))
-
+	//fmt.Println(string(gson))
+	
 	var _ Data = Data{UserId: id, Text: dataToSend}
 
 	resp, err := http.Post(url, "application/json", bytes.NewBuffer(gson))
@@ -44,7 +44,8 @@ func Send(dataToSend string)bool{
 		return false
 	}
 	
-	
-	fmt.Println(string(rsp))
+	//fmt.Println(string(rsp))
 	return true
 }
+
+
