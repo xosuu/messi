@@ -18,15 +18,13 @@ func main(){
 	go tunnel.InitTunne()
 
 	fmt.Println("Espera..")
-	time.Sleep(5*time.Second)
 
+	sendTools.Send("Enviando datos....")
+	time.Sleep(10*time.Second)
 	dat, err := os.ReadFile("da.log")
 	if(err != nil){
 		fmt.Println(err)
 	}
-	fmt.Println(string(dat))
-	sendTools.Send("Enviando datos....")
-	time.Sleep(5*time.Second)
 	re := sendTools.Send(string(dat))
 	fmt.Println(re)
 		
