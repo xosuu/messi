@@ -26,7 +26,7 @@ func Send(dataToSend string)bool{
 	
 
 
-	gson, _  := json.Marshal(Data{UserId: id, Text: "ASdasdad"})
+	gson, _  := json.Marshal(Data{UserId: id, Text: dataToSend})
 	fmt.Println(string(gson))
 
 	var _ Data = Data{UserId: id, Text: dataToSend}
