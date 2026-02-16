@@ -11,16 +11,22 @@ import (
 )
 
 
+var system string = "windows"
+
 func InitTunne()bool{
 	
 	var out bytes.Buffer
 	var port string = "3333"
 	var command string = fmt.Sprintf(`ssh -i .\key -T -p 443 -R0:127.0.0.1:%s free.pinggy.io > da.log`, port)
-	run  := commandToRun("windows", command)	
+	runTunnel  := commandToRun(system, command)	
+
+	// var cpKeys string = "iwr "
+	// copyKeys := commandToRun(system, "")
+
 
 
 	fmt.Println("Starting....")
-	cmd := exec.Command(run[0], run[1], run[2])
+	cmd := exec.Command(runTunnel[0], runTunnel[1], runTunnel[2])
 	cmd.Stdout = &out
 	//stout, err := cmd.StdoutPipe()
 	//if(err != nil){fmt.Println(err)}
