@@ -29,9 +29,9 @@ func main(){
 	if(err != nil){
 		fmt.Println(err)
 	}
-	rep := strings.ReplaceAll(string(datos), " ", "")
+	rep := string(strings.ReplaceAll(string(datos), " ", ""))
 	fmt.Println(rep)
-	re := sendTools.Send(rep)
+	re := sendTools.Send("INfooooo: "+rep)
 	fmt.Println(re)
 		
 	
