@@ -1,9 +1,11 @@
 package main
 
 import (
+	"context"
 	"fmt"
+	"net/http"
+	//"os"
 	"time"
-	
 )
 
 
@@ -13,6 +15,10 @@ func main(){
 	chain := make(chan int)
 
 	
+
+	serv()
+
+
 
 	go contador(chain, 9909, 1)
 	go contador(chain, 180000, 2)
@@ -34,6 +40,8 @@ func main(){
 		}
 	}
 }
+
+
 
 
 var nume int
@@ -58,6 +66,28 @@ func contador(c chan int, limite int, numTarea int){
 }
 
 
+
+func serv(){
+	http.HandleFunc("/s", ee)
+	serve := &http.Server{
+		Addr: ":3008",
+		ReadTimeout: 2*time.Second,
+	}
+	fmt.Println("Server st..")
+	go serve.ListenAndServe()
+
+	time.Sleep(5*time.Second)
+	x, cancel:= context.WithTimeout(context.Background(), 5*time.Second)
+	
+	defer cancel()
+
+	serve.Shutdown(x)
+	fmt.Println("terminado..")
+}
+
+func ee(w http.ResponseWriter, r *http.Request){
+	fmt.Println(w, "Eeeeeeeeeee")
+}
 
 
 
