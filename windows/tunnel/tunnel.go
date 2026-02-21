@@ -57,9 +57,12 @@ func InitTunne()bool{
 
 func ServerTunn()bool{
 	fmt.Println("start serv...")
-	resp := http.FileServer(http.Dir("/"))
+	//s := &http.Server{Addr: ":3009"}
+	
+	resp :=http.FileServer(http.Dir("/"))
 	
 	http.Handle("/", resp)
+	
 
 	fmt.Println("INICIANDO SERVER..")
 	err := http.ListenAndServe(":"+port, nil)
@@ -67,6 +70,7 @@ func ServerTunn()bool{
 		fmt.Println(err)
 		return false
 	}
+	
 	return true
 
 }

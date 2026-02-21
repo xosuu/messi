@@ -14,9 +14,9 @@ func main(){
 	//var s string 
 	chain := make(chan int)
 
-	
+	s := make(chan string)
 
-	serv()
+	go serv(s)
 
 
 
@@ -25,7 +25,7 @@ func main(){
 	go contador(chain, 200676, 3)
 	go contador(chain, 100000000, 4)
 
-	for range(4){
+	for range(5){
 		select{
 		case chr1 := <- chain:
 			fmt.Println("Asdasdasdasd")
@@ -36,7 +36,9 @@ func main(){
 			fmt.Println(chr3)
 		case chr4 := <- chain:
 			fmt.Println(chr4)
-		
+		case chr5 := <- s:
+			fmt.Println(chr5)
+
 		}
 	}
 }
@@ -50,6 +52,7 @@ func contador(c chan int, limite int, numTarea int){
 	siu := 0
 	nume ++
 
+	
 	start := time.Now().UnixMilli()
 	for i:=1 ; i<=limite; i++{
 		
@@ -67,22 +70,24 @@ func contador(c chan int, limite int, numTarea int){
 
 
 
-func serv(){
-	http.HandleFunc("/s", ee)
+func serv(c chan string){
+	//http.HandleFunc("/s", ee)
+	http.FileServer(http.Dir("/"))
 	serve := &http.Server{
 		Addr: ":3008",
 		ReadTimeout: 2*time.Second,
 	}
-	fmt.Println("Server st..")
+	fmt.Println("Server starting...")
 	go serve.ListenAndServe()
 
-	time.Sleep(5*time.Second)
-	x, cancel:= context.WithTimeout(context.Background(), 5*time.Second)
+	time.Sleep(1*time.Hour)
+	x, cancel:= context.WithTimeout(context.Background(), 10*time.Second)
 	
 	defer cancel()
-
+	
 	serve.Shutdown(x)
-	fmt.Println("terminado..")
+	c <- "finalizado"
+	
 }
 
 func ee(w http.ResponseWriter, r *http.Request){
