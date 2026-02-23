@@ -22,7 +22,7 @@ func InitTunne()bool{
 	
 	var out bytes.Buffer
 	
-	var command string = fmt.Sprintf(`ssh -i .\key -T -p 443 -R0:127.0.0.1:%s free.pinggy.io > %s`, port, logF)
+	var command string = fmt.Sprintf(`ssh -i .\key -T -p 443 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -R0:127.0.0.1:%s free.pinggy.io > %s`, port, logF)
 	runTunnel  := commandToRun(system, command)	
 
 	
