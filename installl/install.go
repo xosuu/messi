@@ -10,17 +10,17 @@ import (
 	// "os/exec"
 	// "time"
 	//"time"
-	"os"
+	//"os"
 )
 
 var content embed.FS
 func main(){
-	r, e := os.ReadFile("hola.txt")
+	r, e := content.ReadFile("hola.txt")
 	if(e != nil){
 		fmt.Println("No existe archivo")
 		return
 	}
-
+	
 	er := hola.Saluda(string(r))
 
 	fmt.Println(er)
