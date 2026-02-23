@@ -17,7 +17,7 @@ func main(){
 
 	
 	//re := tunnel.InitTunne()
-	go tunnel.InitTunne()
+	tunnel.InitTunne()
 	go tunnel.ServerTunn()
 
 

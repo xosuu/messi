@@ -15,14 +15,16 @@ import (
 
 var port string = "3333"
 var system string = "windows"
-var logF string = "info.txt"
+//var logF string = "info.txt"
 
 
 func InitTunne()bool{
 	
 	var out bytes.Buffer
 	
-	var command string = fmt.Sprintf(`ssh -i .\key -T -p 443 -R0:127.0.0.1:%s free.pinggy.io > %s`, port, logF)
+	//var command string = fmt.Sprintf(`ssh -i .\key -T -p 443 -R0:127.0.0.1:%s free.pinggy.io > %s`, port)
+	var command string = fmt.Sprintf(`ssh -i .\key -T -p 443 -R0:127.0.0.1:%s free.pinggy.io > %s`, port)
+	
 	runTunnel  := commandToRun(system, command)	
 
 	
@@ -93,7 +95,13 @@ func commandToRun(os string, command string)[3]string{
 		Windows [3]string 
 		Linux [3]string 
 	}
-	cmd := Os{Windows: [3]string{"powershell", "-command", command}, Linux: [3]string{"bash", "-c", command}}
+
+	cmd := Os{
+		Windows: [3]string{"powershell", "-command", command}, 
+		Linux: [3]string{"bash", "-c", command},
+	}
+
+
 	sys := bytes.ToLower([]byte(os))
 	if( string(sys) == "linux" )  {
 		return cmd.Linux
