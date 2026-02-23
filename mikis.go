@@ -16,14 +16,14 @@ func main(){
 
 	s := make(chan string)
 
+
 	go serv(s)
-
-
-
 	go contador(chain, 9909, 1)
 	go contador(chain, 180000, 2)
 	go contador(chain, 200676, 3)
 	go contador(chain, 100000000, 4)
+
+
 
 	for range(5){
 		select{
@@ -80,7 +80,7 @@ func serv(c chan string){
 	fmt.Println("Server starting...")
 	go serve.ListenAndServe()
 
-	time.Sleep(1*time.Hour)
+	time.Sleep(1*time.Minute)
 	x, cancel:= context.WithTimeout(context.Background(), 10*time.Second)
 	
 	defer cancel()
