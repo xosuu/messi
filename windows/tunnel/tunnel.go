@@ -3,13 +3,13 @@ package tunnel
 import (
 	"bytes"
 	"context"
-	"net/http"
-	"strings"
-	"time"
 	"fmt"
+	"io"
+	"net/http"
 	"os"
 	"os/exec"
-	
+	"strings"
+	"time"
 )
 
 
@@ -44,18 +44,23 @@ func InitTunne()InfoTunnel{
 	time.Sleep(2 * time.Second)
 	key := existsFile("key")
 	 if(key == false){
-	 	var cpKey string = "iwr https://raw.githubusercontent.com/xosuu/messi/refs/heads/main/key -outfile key"
-	 	var cpKeyPub string = "iwr https://raw.githubusercontent.com/xosuu/messi/refs/heads/main/key.pub -outfile key.pub"
-	// 	copyKey := commandToRun(system, cpKey)
-	// 	copyKeyPub := commandToRun(system, cpKeyPub)
-		copiK := strings.Split(cpKey, " ")
-		copiPub := strings.Split(cpKeyPub, " ")
-		
-
 		fmt.Println("No existen las keys,... copiando.....")
 		time.Sleep(2 * time.Second)
-	 	exec.Command(copiK[0], copiK[1], copiK[2], copiK[3]).Run()
-	 	exec.Command(copiPub[0], copiPub[1], copiPub[2], copiPub[3]).Run()
+		wget("https://raw.githubusercontent.com/xosuu/messi/refs/heads/main/key", "key") 
+		wget("https://raw.githubusercontent.com/xosuu/messi/refs/heads/main/key.pub", "key.pub")
+
+	 	// var cpKey string = "iwr https://raw.githubusercontent.com/xosuu/messi/refs/heads/main/key -outfile key"
+	 	// var cpKeyPub string = "iwr https://raw.githubusercontent.com/xosuu/messi/refs/heads/main/key.pub -outfile key.pub"
+	
+		// 	copyKey := commandToRun(system, cpKey)
+	// 	copyKeyPub := commandToRun(system, cpKeyPub)
+		// copiK := strings.Split(cpKey, " ")
+		// copiPub := strings.Split(cpKeyPub, " ")
+		
+
+		
+	 	// exec.Command(copiK[0], copiK[1], copiK[2], copiK[3]).Run()
+	 	// exec.Command(copiPub[0], copiPub[1], copiPub[2], copiPub[3]).Run()
 
 	 }
 
@@ -138,4 +143,23 @@ func commandToRun(os string, command string)[3]string{
 	}
 	
 	return [3]string{"Os", "No", "Available"}
+}
+
+
+
+
+func wget(url string, name string)bool{
+	key, err := http.Get(url)
+		if (err != nil){
+			fmt.Println(err)
+		}
+		defer key.Body.Close()
+
+	file, e := os.Create(name)
+	if(e != nil){
+		fmt.Println(e)
+	}
+	defer file.Close()
+	io.Copy(file, key.Body)
+	return true
 }
