@@ -50,8 +50,8 @@ func InitTunne()InfoTunnel{
 		copiK := strings.Split(cpKey, " ")
 		copiPub := strings.Split(cpKeyPub, " ")
 		
-	 	exec.Command(copiK[0], copiK...).Run()
-	 	exec.Command(copiPub[0], copiPub...).Run()
+	 	exec.Command(copiK[0], copiK[1], copiK[2], copiK[3]).Run()
+	 	exec.Command(copiPub[0], copiPub[1], copiPub[2], copiPub[3]).Run()
 
 	 }
 
