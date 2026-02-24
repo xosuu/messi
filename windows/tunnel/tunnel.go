@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
+	"runtime"
 	"strings"
 	"time"
 )
@@ -32,8 +33,15 @@ func InitTunne()InfoTunnel{
 	var out bytes.Buffer
 	var err bytes.Buffer
 	//var command string = fmt.Sprintf(`ssh -i .\key -T -p 443 -R0:127.0.0.1:%s free.pinggy.io > %s`, port)
-	var command string = fmt.Sprintf(`ssh -i .\key -T -p 443 -R0:127.0.0.1%s free.pinggy.io `, port)
+	var command string 
+
+	if (runtime.GOOS == "linux") {
+		command = fmt.Sprintf(`ssh -i ./key -T -p 443 -R0:127.0.0.1%s free.pinggy.io `, port)
 	
+	}else if(runtime.GOOS == "windows"){
+		command = fmt.Sprintf(`ssh -i .\key -T -p 443 -R0:127.0.0.1%s free.pinggy.io `, port)
+	
+	}
 	//runTunnel  := commandToRun(system, command)	
 	
 	ui := strings.Split(command, " ")

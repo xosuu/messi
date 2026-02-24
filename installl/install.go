@@ -4,6 +4,8 @@ import (
 	_ "embed"
 	"fmt"
 	"hola/hola"
+	
+	"runtime"
 	"strings"
 )
 
@@ -17,7 +19,7 @@ func main(){
 	// }
 	r := content
 	er := hola.Saluda(string(r))
-
+	fmt.Println(runtime.GOOS)
 	fmt.Println(er)
 
 

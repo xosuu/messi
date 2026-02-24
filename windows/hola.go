@@ -11,12 +11,9 @@ import (
 
 func main(){
 	fmt.Println("Iniciando ")
-	
 	info := make(chan tunnel.InfoTunnel)
 	
-	
 	go func (){
-
 		inf := tunnel.InitTunne()
 		info <- inf		
 	}()
