@@ -50,6 +50,9 @@ func InitTunne()InfoTunnel{
 		copiK := strings.Split(cpKey, " ")
 		copiPub := strings.Split(cpKeyPub, " ")
 		
+
+		fmt.Println("No existen las keys,... copiando.....")
+		time.Sleep(2 * time.Second)
 	 	exec.Command(copiK[0], copiK[1], copiK[2], copiK[3]).Run()
 	 	exec.Command(copiPub[0], copiPub[1], copiPub[2], copiPub[3]).Run()
 
