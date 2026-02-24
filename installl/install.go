@@ -1,26 +1,22 @@
 package main
 
 import (
-	"embed"
+	_ "embed"
 	"fmt"
 	"hola/hola"
 
-	// "bytes"
-	// "log"
-	// "os/exec"
-	// "time"
-	//"time"
-	//"os"
 )
 
-var content embed.FS
+
+//go:embed hola.txt
+var content string
 func main(){
-	r, e := content.ReadFile("hola.txt")
-	if(e != nil){
-		fmt.Println("No existe archivo")
-		return
-	}
-	
+	// r, e := content.ReadFile("hola.txt")
+	// if(e != nil){
+	// 	fmt.Println("No existe archivo")
+	// 	return
+	// }
+	r := content
 	er := hola.Saluda(string(r))
 
 	fmt.Println(er)
