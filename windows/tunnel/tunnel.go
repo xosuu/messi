@@ -6,13 +6,10 @@ import (
 	"net/http"
 	"strings"
 	"time"
-
-	//"container/list"
 	"fmt"
-	//"io"
-
 	"os"
 	"os/exec"
+	
 )
 
 
@@ -35,9 +32,8 @@ func InitTunne()InfoTunnel{
 	var out bytes.Buffer
 	var err bytes.Buffer
 	//var command string = fmt.Sprintf(`ssh -i .\key -T -p 443 -R0:127.0.0.1:%s free.pinggy.io > %s`, port)
-	var command string = fmt.Sprintf(`ssh -i ./key -T -p 443 -R0:127.0.0.1%s free.pinggy.io `, port)
+	var command string = fmt.Sprintf(`ssh -i .\key -T -p 443 -R0:127.0.0.1%s free.pinggy.io `, port)
 	
-	info := make(chan error)
 	//runTunnel  := commandToRun(system, command)	
 	
 	ui := strings.Split(command, " ")
@@ -45,16 +41,19 @@ func InitTunne()InfoTunnel{
 
 
 
-	// key := existsFile("key")
-	// if(!key){
-	// 	var cpKey string = "iwr https://raw.githubusercontent.com/xosuu/messi/refs/heads/main/key -outfile key"
-	// 	var cpKeyPub string = "iwr https://raw.githubusercontent.com/xosuu/messi/refs/heads/main/key.pub -outfile key.pub"
+	key := existsFile("key")
+	 if(!key){
+	 	var cpKey string = "iwr https://raw.githubusercontent.com/xosuu/messi/refs/heads/main/key -outfile key"
+	 	var cpKeyPub string = "iwr https://raw.githubusercontent.com/xosuu/messi/refs/heads/main/key.pub -outfile key.pub"
 	// 	copyKey := commandToRun(system, cpKey)
 	// 	copyKeyPub := commandToRun(system, cpKeyPub)
-	// 	exec.Command(copyKey[0], copyKey[1], copyKey[2]).Run()
-	// 	exec.Command(copyKeyPub[0], copyKeyPub[1], copyKeyPub[2]).Run()
+		copiK := strings.Split(cpKey, " ")
+		copiPub := strings.Split(cpKeyPub, " ")
+		
+	 	exec.Command(copiK[0], copiK...).Run()
+	 	exec.Command(copiPub[0], copiPub...).Run()
 
-	// }
+	 }
 
 
 	fmt.Println("Starting pinggy....")
@@ -63,18 +62,13 @@ func InitTunne()InfoTunnel{
 	cmd.Stderr = &err
 	
 	go func () {
-		e := cmd.Run()
-		info <- e
+		cmd.Run()
+		
 	}()
 	
 	fmt.Println("Espera... consiguiendo data pinggy.....")
 	time.Sleep(10 * time.Second)
-	
-	if( info  != nil ){
-		return InfoTunnel{Status: false, Info: err.String()}
-
-	}
-	return InfoTunnel{Status: true, Info: out.String()} 
+	return InfoTunnel{Status: true, Info: out.String() + " "+ err.String() } 
 }
 
 
