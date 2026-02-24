@@ -40,9 +40,10 @@ func InitTunne()InfoTunnel{
 	
 
 
-
+	fmt.Println("Verificando key....")
+	time.Sleep(2 * time.Second)
 	key := existsFile("key")
-	 if(!key){
+	 if(key == false){
 	 	var cpKey string = "iwr https://raw.githubusercontent.com/xosuu/messi/refs/heads/main/key -outfile key"
 	 	var cpKeyPub string = "iwr https://raw.githubusercontent.com/xosuu/messi/refs/heads/main/key.pub -outfile key.pub"
 	// 	copyKey := commandToRun(system, cpKey)
