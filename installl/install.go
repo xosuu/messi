@@ -4,9 +4,8 @@ import (
 	_ "embed"
 	"fmt"
 	"hola/hola"
-
+	"strings"
 )
-
 
 //go:embed hola.txt
 var content string
@@ -20,6 +19,13 @@ func main(){
 	er := hola.Saluda(string(r))
 
 	fmt.Println(er)
+
+
+	//lista := [...]string{"AS","A","Asd","as","ASd","A"}
+
+	nombre := "hola mi nombre es pepe"
+
+	fmt.Println(strings.Split(nombre, " "))
 	// var out bytes.Buffer
 	
 	// ch := make(chan int)
