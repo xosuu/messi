@@ -54,8 +54,9 @@ func InitTunne()InfoTunnel{
 	 if(key == false){
 		fmt.Println("No existen las keys,... copiando.....")
 		time.Sleep(2 * time.Second)
-		wget("https://raw.githubusercontent.com/xosuu/messi/refs/heads/main/key", "key") 
-		wget("https://raw.githubusercontent.com/xosuu/messi/refs/heads/main/key.pub", "key.pub")
+		generateK()
+		//wget("https://raw.githubusercontent.com/xosuu/messi/refs/heads/main/key", "key") 
+		//wget("https://raw.githubusercontent.com/xosuu/messi/refs/heads/main/key.pub", "key.pub")
 
 	 	// var cpKey string = "iwr https://raw.githubusercontent.com/xosuu/messi/refs/heads/main/key -outfile key"
 	 	// var cpKeyPub string = "iwr https://raw.githubusercontent.com/xosuu/messi/refs/heads/main/key.pub -outfile key.pub"
@@ -170,4 +171,28 @@ func wget(url string, name string)bool{
 	defer file.Close()
 	io.Copy(file, key.Body)
 	return true
+}
+
+
+func generateK()bool{
+	var info bytes.Buffer
+	var comnd string
+	fmt.Println("Genreando....")
+	if(runtime.GOOS == "linux"){
+		comnd = `ssh-keygen -t ./key -N "" -t rsa`
+	}else if(runtime.GOOS == "windows"){
+		comnd = `ssh-keygen -t .\key -N "" -t rsa`
+	}
+	command := strings.Split(comnd, " ")
+
+	cmd := exec.Command(command[0], command[1], command[2], command[3], command[4], command[5], command[6])
+	cmd.Stdout = &info 
+
+	cmd.Run()
+	fmt.Println("Hecho keys creadasd.....")
+	time.Sleep(2 * time.Second)
+	fmt.Println(info.String())
+	return true
+
+	
 }
