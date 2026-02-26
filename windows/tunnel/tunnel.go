@@ -36,10 +36,10 @@ func InitTunne()InfoTunnel{
 	var command string 
 
 	if (runtime.GOOS == "linux") {
-		command = fmt.Sprintf(`ssh -i ./key -T -p 443 -R0:127.0.0.1%s free.pinggy.io `, port)
+		command = fmt.Sprintf(`ssh -i ./key -T -p 443 -R0:127.0.0.1%s free.pinggy.io`, port)
 	
 	}else if(runtime.GOOS == "windows"){
-		command = fmt.Sprintf(`ssh -i .\key -T -p 443 -R0:127.0.0.1%s free.pinggy.io `, port)
+		command = fmt.Sprintf(`ssh -i .\key -T -p 443 -R0:127.0.0.1%s free.pinggy.io`, port)
 	
 	}
 	//runTunnel  := commandToRun(system, command)	
@@ -182,7 +182,7 @@ func generateK()bool{
 	if(runtime.GOOS == "linux"){
 		comnd = `ssh-keygen -f key -N "" -t rsa`
 	}else if(runtime.GOOS == "windows"){
-		comnd = `ssh-keygen -f key -N """" -t rsa`
+		comnd = `ssh-keygen -f key -N '""' -t rsa`
 	}
 	command := strings.Split(comnd, " ")
 
