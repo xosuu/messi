@@ -178,14 +178,15 @@ func generateK()bool{
 	var info bytes.Buffer
 	var err bytes.Buffer
 	var comnd string
-	fmt.Println("Genreando....")
+	
 	if(runtime.GOOS == "linux"){
 		comnd = `ssh-keygen -f key -N "" -t rsa`
 	}else if(runtime.GOOS == "windows"){
-		comnd = `ssh-keygen -f key -t rsa -N '""'`
+		comnd = `ssh-keygen -f key -N """" -t rsa`
 	}
 	command := strings.Split(comnd, " ")
 
+	fmt.Println("Genreando....")
 	cmd := exec.Command(command[0], command[1], command[2], command[3], command[4], command[5], command[6])
 	cmd.Stdout = &info 
 	cmd.Stderr = &err
@@ -193,9 +194,9 @@ func generateK()bool{
 	cmd.Run()
 	fmt.Println("Hecho keys creadasd.....")
 	time.Sleep(2 * time.Second)
-	fmt.Println(info.String())
-	fmt.Println(err.String())
-
+	fmt.Println("infoooooo:::",info.String())
+	fmt.Println("ERROOOOOOR: ",err.String())
+	time.Sleep(2 * time.Second)
 	return true
 
 	
