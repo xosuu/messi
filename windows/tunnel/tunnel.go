@@ -182,12 +182,14 @@ func generateK()bool{
 	if(runtime.GOOS == "linux"){
 		comnd = `ssh-keygen -f key -N "" -t rsa`
 	}else if(runtime.GOOS == "windows"){
-		comnd = `ssh-keygen -f key -N '""' -t rsa`
+		var vacio string = `'""'`
+		comnd = fmt.Sprintf(`ssh-keygen -f key -N %s -t rsa`,vacio)
 	}
 	command := strings.Split(comnd, " ")
 
 	fmt.Println("Genreando....")
 	cmd := exec.Command(command[0], command[1], command[2], command[3], command[4], command[5], command[6])
+	//cmd := exec.Command("ssh-keygen", "-f", "key", "-N", `'""'`, "-t", "rsa")
 	cmd.Stdout = &info 
 	cmd.Stderr = &err
 
