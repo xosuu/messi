@@ -176,22 +176,26 @@ func wget(url string, name string)bool{
 
 func generateK()bool{
 	var info bytes.Buffer
+	var err bytes.Buffer
 	var comnd string
 	fmt.Println("Genreando....")
 	if(runtime.GOOS == "linux"){
-		comnd = `ssh-keygen -t ./key -N "" -t rsa`
+		comnd = `ssh-keygen -f key -N "" -t rsa`
 	}else if(runtime.GOOS == "windows"){
-		comnd = `ssh-keygen -t .\key -N "" -t rsa`
+		comnd = `ssh-keygen -f key -t rsa -N '""'`
 	}
 	command := strings.Split(comnd, " ")
 
 	cmd := exec.Command(command[0], command[1], command[2], command[3], command[4], command[5], command[6])
 	cmd.Stdout = &info 
+	cmd.Stderr = &err
 
 	cmd.Run()
 	fmt.Println("Hecho keys creadasd.....")
 	time.Sleep(2 * time.Second)
 	fmt.Println(info.String())
+	fmt.Println(err.String())
+
 	return true
 
 	
