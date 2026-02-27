@@ -25,6 +25,7 @@ var timeToLiveServer time.Duration = 60 //minutes
 type InfoTunnel struct{
 	Status bool
 	Info string
+	TunnelPinngyObj *exec.Cmd
 }
 
 
@@ -86,7 +87,7 @@ func InitTunne()InfoTunnel{
 	
 	fmt.Println("Espera... consiguiendo data pinggy.....")
 	time.Sleep(10 * time.Second)
-	return InfoTunnel{Status: true, Info: out.String() + " "+ err.String() } 
+	return InfoTunnel{Status: true, Info: out.String() + " "+ err.String(), TunnelPinngyObj: cmd } 
 }
 
 
@@ -103,7 +104,7 @@ func ServerTunn()bool{
 	
 
 	fmt.Println("INICIANDO SERVER..")
-
+	
 	go func (){
 		server.ListenAndServe()
 	}()

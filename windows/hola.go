@@ -2,10 +2,13 @@ package main
 
 import (
 	"fmt"
+	"os"
+	
+	"os/signal"
+	"syscall"
 	"time"
 	"windows/sendTools"
 	"windows/tunnel"
-
 )
 
 
@@ -13,11 +16,18 @@ func main(){
 	fmt.Println("Iniciando ")
 	info := make(chan tunnel.InfoTunnel)
 	
+	exit := make(chan os.Signal, 1)
+
+
+	
+	
 	go func (){
 		inf := tunnel.InitTunne()
+
 		info <- inf		
 	}()
-	msg := <- info
+	data := <- info
+	
 	fmt.Println("Pinggy iniciado..")
 
 
@@ -30,11 +40,17 @@ func main(){
 	time.Sleep(10*time.Second)
 	
 	
-	re := sendTools.Send("INfooooo: "+msg.Info)
+	re := sendTools.Send("INfooooo: "+data.Info)
 	fmt.Println(re)
 		
 	fmt.Println("running.....")
-	select{}
+	//select{}
+	signal.Notify(exit, syscall.SIGINT, syscall.SIGTERM)
+	ext := <-exit
+	fmt.Println("terminado bye bye", ext)
+	data.TunnelPinngyObj.Process.Kill()
+	
+	
 
 }
 
