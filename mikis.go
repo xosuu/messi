@@ -18,10 +18,10 @@ func main(){
 
 
 	go serv(s)
-	go contador(chain, 9909, 1)
-	go contador(chain, 180000, 2)
-	go contador(chain, 200676, 3)
-	go contador(chain, 100000000, 4)
+	go contador(chain, 990900, 1)
+	go contador(chain, 1800000000, 2)
+	go contador(chain, 2006760000, 3)
+	go contador(chain, 1000000000, 4)
 
 
 

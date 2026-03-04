@@ -15,7 +15,7 @@ func Analize(file string){
 	last, _ := os.Stat(file)
 	fileName := file
 	er := last.ModTime()
-	log.Print(fileName)
+	//log.Print(fileName)
 	for {
 		time.Sleep(5 * time.Second)
 		fil , err := os.Stat(file)
