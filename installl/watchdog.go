@@ -56,10 +56,10 @@ func main(){
 	signal.Notify(ch, syscall.SIGINT, syscall.SIGTERM)
 
 
-	// for i:=0 ; i<len(filesToAnalize);i++{
-	// 	go dog.Analize(filesToAnalize[i])
+	for i:=0 ; i<len(filesToAnalize);i++{
+		go dog.Analize(filesToAnalize[i])
 
-	// }
+	}
 	
 
 	si := <- ch 
