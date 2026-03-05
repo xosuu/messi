@@ -1,58 +1,54 @@
 package main
 
 import (
-	"bytes"
 	"dog/dog"
 	"fmt"
 	"os"
-	"os/exec"
+	
 	"os/signal"
-	"strings"
+	
 	"syscall"
 )
 
 
 func main(){
 	
-	// filess := dog.ReadDocs().File.Paths
+	var filesToAnalize []string
+	ch := make(chan os.Signal, 1) //channel
 
-	// siu, er := dog.GetFiles(filess)
-	// if(er != nil){
-	// 	fmt.Println(er)
-	// }
-	// fmt.Println(siu)
+
+
+	filess, errFile := dog.GetFiles(dog.ReadDocs().File.Paths)
+	dirss, errDir := dog.GetFilesFromDir(dog.ReadDocs().Dir.Paths)
 	
-	dirs, er := dog.GetFilesFromDir(dog.ReadDocs().Dir.Paths)
-	if(er != nil){
-		fmt.Println(er)
+	if(errFile != nil){
+		fmt.Println(errFile.Error())
+		
 	}
-	fmt.Println(dirs)
+	if(errDir != nil){
+		fmt.Println(errDir.Error())
+	}
+	// fmt.Println(filess)
+	// fmt.Println(dirss)
 
 
-
-	ch := make(chan os.Signal, 1)
 	
-	var out bytes.Buffer
-	cmd := exec.Command("ls", "./files/")
-	cmd.Stdout = &out 
-	cmd.Run()
-
-
-	files := strings.ReplaceAll(out.String(), "\n", " ")
-
-	list := strings.Split(files, " ")
 	
+	
+	filesToAnalize = dog.ListCleaner(append(dirss, filess...))
 
 
+	fmt.Println("JIJOOOOOO: ",filesToAnalize)
+	fmt.Print("\n\n\033[1;33m		MONITOREANDO \033[0m")
 
 
 	banner := fmt.Sprintf(`
-	
-	
-		Monitoreando %d archivos
+		Carpetas: %d
+		Archivos: %d
 
+		Total Archivos: %d
 	
-	`, len(list))
+	`, len(filess), len(dirss), len(filesToAnalize))
 
 
 	fmt.Println(banner)
@@ -60,8 +56,8 @@ func main(){
 	signal.Notify(ch, syscall.SIGINT, syscall.SIGTERM)
 
 
-	for i:=0 ; i<len(list);i++{
-		go dog.Analize("./files/"+list[i])
+	for i:=0 ; i<len(filesToAnalize);i++{
+		go dog.Analize(filesToAnalize[i])
 
 	}
 	

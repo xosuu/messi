@@ -46,6 +46,10 @@ func GetFilesFromDir(PathDir []string)([]string, error){
 	var listFiles []string
 	var out bytes.Buffer
 
+	var listaFinal []string
+
+
+
 	if(len(data) == 0){
 		return []string{""}, errors.New("No hay directorios")
 	}
@@ -61,11 +65,16 @@ func GetFilesFromDir(PathDir []string)([]string, error){
 			cmd := exec.Command("ls", data[i])
 			cmd.Stdout = &out
 			cmd.Run()
-			fmt.Println(out.String())
+			//fmt.Println(out.String())
+
+
+			//convertimos en lista y cada ruta la Anadimos a la lista principal
 			list := splitString(out.String())
+			list = deleteLastElement(list)
 			
-			for i:=0; i<len(list); i++{
-				listFiles = append(listFiles, list[i])
+			for fi:=0; fi<len(list); fi++{
+				ruta := data[i] + list[fi] //ruta
+				listFiles = append(listFiles, ruta)
 			}
 			
 
@@ -73,10 +82,19 @@ func GetFilesFromDir(PathDir []string)([]string, error){
 		
 	}
 
-	return listFiles, nil
-	// for i:=0; i<len(listFiles); i++{
 
-	// }
+	//limpiar lista
+	
+	fmt.Println("limpiando lista")
+	for i:=0; i<len(listFiles); i++{
+		time.Sleep(100*time.Millisecond)
+		resp, err := verifyFile(listFiles[i])
+		if(err == false){
+			continue
+		}
+		listaFinal = append(listaFinal, resp) 
+	}
+	return listaFinal, nil
 	
 
 }
@@ -86,7 +104,7 @@ func GetFiles(paths[]string)([]string, error){
 	data := paths
 
 	if(len(data) == 0){
-		return []string{""}, errors.New("No hay archivos")
+		return []string{""}, errors.New("Archivos vacios o no validos: files{path:[]}")
 	}
 	
 	for i:=0; i<len(data); i++{
@@ -100,7 +118,7 @@ func GetFiles(paths[]string)([]string, error){
 		
 	}
 	if(len(files)==0){
-		return []string{""}, errors.New("No hay archivos") 
+		return []string{""}, errors.New("Se encontraron archivos pero no son validos: files{path:['no existe']}") 
 	}
 	return files, nil
 }
@@ -176,5 +194,28 @@ func splitString(info string)[]string{
 }
 
 
+
+func deleteLastElement(list []string)[]string{
+	return list[:len(list)-1]
+}
+
+
+func ListCleaner(list[]string)[]string{
+
+	var newList []string
+
+	for i:=0; i<len(list); i++{
+		if(list[i] == ""){
+			continue
+		}else if(list[i]== " "){
+			continue
+		}else{
+			newList = append(newList, list[i])
+		}
+	}
+
+	return newList
+
+}
 
 
