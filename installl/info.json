@@ -10,6 +10,6 @@
 
     "dir":
         {
-            "paths":["./files/"]
+            "paths":["./files/", "/workspaces/messi/installl/siu/"]
         }
 }

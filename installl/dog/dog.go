@@ -40,26 +40,30 @@ func Analize(file string){
 
 
 
-func GetFilesFromDir(PathDir []string)([]string, error){
+func GetFilesFromDir(PathDir []string)(int, []string, error){
 	data := PathDir
 	
 	var listFiles []string
 	var out bytes.Buffer
 
-	var listaFinal []string
-
+	var finalList []string
+	var totalDirs int
+	
 
 
 	if(len(data) == 0){
-		return []string{""}, errors.New("No hay directorios")
+		return 0, []string{""}, errors.New("No hay directorios")
 	}
 
 	for i:=0; i<len(data); i++{
 		time.Sleep(200 * time.Millisecond)
 		info, er := os.Stat(data[i])
+		fmt.Println("Carpetas encontradas: ", len(data))
 		if(er != nil){
 			continue
 		}else if( info.IsDir()){
+			totalDirs += 1
+			out.Reset() //limpiamos para que esta vuelta no se acumule
 			fmt.Println("Verificando carpeta..", data[i])
 			time.Sleep(2*time.Second)
 			cmd := exec.Command("ls", data[i])
@@ -71,8 +75,9 @@ func GetFilesFromDir(PathDir []string)([]string, error){
 			//convertimos en lista y cada ruta la Anadimos a la lista principal
 			list := splitString(out.String())
 			list = deleteLastElement(list)
-			
+			//fmt.Println(len(list))
 			for fi:=0; fi<len(list); fi++{
+				//fmt.Println(list[fi])
 				ruta := data[i] + list[fi] //ruta
 				listFiles = append(listFiles, ruta)
 			}
@@ -86,15 +91,17 @@ func GetFilesFromDir(PathDir []string)([]string, error){
 	//limpiar lista
 	
 	fmt.Println("limpiando lista")
+	//fmt.Println(len(listFiles))
+	//fmt.Println(listFiles)
 	for i:=0; i<len(listFiles); i++{
 		time.Sleep(100*time.Millisecond)
 		resp, err := verifyFile(listFiles[i])
 		if(err == false){
 			continue
 		}
-		listaFinal = append(listaFinal, resp) 
+		finalList = append(finalList, resp) 
 	}
-	return listaFinal, nil
+	return totalDirs, finalList, nil
 	
 
 }
@@ -118,7 +125,7 @@ func GetFiles(paths[]string)([]string, error){
 		
 	}
 	if(len(files)==0){
-		return []string{""}, errors.New("Se encontraron archivos pero no son validos: files{path:['no existe']}") 
+		return []string{}, errors.New("Se encontraron archivos pero no son validos: files{path:['no existe']}") 
 	}
 	return files, nil
 }
@@ -134,10 +141,6 @@ func verifyFile(filePath string)(string, bool){
 	return filePath, true
 
 }
-
-
-
-
 
 
 

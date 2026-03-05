@@ -18,8 +18,8 @@ func main(){
 
 
 
-	filess, errFile := dog.GetFiles(dog.ReadDocs().File.Paths)
-	dirss, errDir := dog.GetFilesFromDir(dog.ReadDocs().Dir.Paths)
+	files, errFile := dog.GetFiles(dog.ReadDocs().File.Paths)
+	cantidadCarpetas, dirsFiles, errDir := dog.GetFilesFromDir(dog.ReadDocs().Dir.Paths)
 	
 	if(errFile != nil){
 		fmt.Println(errFile.Error())
@@ -28,17 +28,17 @@ func main(){
 	if(errDir != nil){
 		fmt.Println(errDir.Error())
 	}
-	// fmt.Println(filess)
-	// fmt.Println(dirss)
+	fmt.Println(len(files))
+	fmt.Println(len(dirsFiles))
 
 
 	
 	
 	
-	filesToAnalize = dog.ListCleaner(append(dirss, filess...))
+	filesToAnalize = dog.ListCleaner(append(dirsFiles, files...))
 
 
-	fmt.Println("JIJOOOOOO: ",filesToAnalize)
+	//fmt.Println("JIJOOOOOO: ",filesToAnalize)
 	fmt.Print("\n\n\033[1;33m		MONITOREANDO \033[0m")
 
 
@@ -48,18 +48,18 @@ func main(){
 
 		Total Archivos: %d
 	
-	`, len(filess), len(dirss), len(filesToAnalize))
+	`, cantidadCarpetas, len(files), len(filesToAnalize))
 
-
+	
 	fmt.Println(banner)
 	//Aca esperamsos el ctrl+c
 	signal.Notify(ch, syscall.SIGINT, syscall.SIGTERM)
 
 
-	for i:=0 ; i<len(filesToAnalize);i++{
-		go dog.Analize(filesToAnalize[i])
+	// for i:=0 ; i<len(filesToAnalize);i++{
+	// 	go dog.Analize(filesToAnalize[i])
 
-	}
+	// }
 	
 
 	si := <- ch 

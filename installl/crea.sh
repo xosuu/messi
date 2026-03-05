@@ -6,9 +6,8 @@ cantidad=500
 for (( i=0; i<10; i++ )); do 
 
 
-    touch ./files/$i.txt
+    touch ./siu/$i.txt
 
 done
-
 
 
