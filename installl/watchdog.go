@@ -14,12 +14,24 @@ import (
 
 func main(){
 	
+	// filess := dog.ReadDocs().File.Paths
 
+	// siu, er := dog.GetFiles(filess)
+	// if(er != nil){
+	// 	fmt.Println(er)
+	// }
+	// fmt.Println(siu)
 	
-	ch := make(chan os.Signal, 1)
-	// archivos := [5]string{"holis.txt", "uno.txt", "dos.txt", "tres.txt", "cuatro.txt"}
-	// fmt.Println("analizando 5 archivos")
+	dirs, er := dog.GetFilesFromDir(dog.ReadDocs().Dir.Paths)
+	if(er != nil){
+		fmt.Println(er)
+	}
+	fmt.Println(dirs)
 
+
+
+	ch := make(chan os.Signal, 1)
+	
 	var out bytes.Buffer
 	cmd := exec.Command("ls", "./files/")
 	cmd.Stdout = &out 

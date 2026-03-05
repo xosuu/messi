@@ -1,0 +1,15 @@
+{
+    
+    "telegramToken":".............",
+    
+    
+    "file":
+        {
+            "paths":["Asdasd"]
+        },
+
+    "dir":
+        {
+            "paths":["asda", "./files/"]
+        }
+}
