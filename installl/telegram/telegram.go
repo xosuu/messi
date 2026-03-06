@@ -5,7 +5,8 @@ import (
 	// "os"
 	"bytes"
 	"encoding/json"
-	"fmt" 
+	"errors"
+	"fmt"
 	"net/http"
 	"os"
 
@@ -33,7 +34,7 @@ func Send(msg string)(string, error){
 		fmt.Println(resp.StatusCode)	
 		return "", nil
 	}
-	return "", nil
+	return "", errors.New("Esta opcion no esta activa ")
 	
 }
 
