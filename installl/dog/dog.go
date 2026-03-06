@@ -6,12 +6,16 @@ import (
 	"os/exec"
 	"strings"
 
+	"fmt"
 	"log"
 	"os"
-	"fmt"
 	"time"
+
 	//"time"
 	"encoding/json"
+
+	"dog/mystruct"
+	
 )
 
 
@@ -151,21 +155,8 @@ func verifyFile(filePath string)(string, bool){
 
 
 
-type Files struct{
-	Paths []string `json:"paths"`
-}
-type Directory struct{
-	Paths []string `json:"paths"`
-}
 
-type Docs struct{
-	
-	File Files `json:"file"`
-	Dir  Directory `json:"dir"`
-
-
-}
-func ReadDocs()Docs{
+func ReadDocs()mystruct.Docs{
 
 
 
@@ -175,7 +166,7 @@ func ReadDocs()Docs{
 	}
 
 
-	var inf Docs
+	var inf mystruct.Docs
 	er := json.Unmarshal([]byte(string(files)), &inf)
 	
 	if(er != nil){
