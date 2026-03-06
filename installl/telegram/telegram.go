@@ -3,9 +3,9 @@ package telegram
 import (
 	// "net/http"
 	// "os"
+	"bytes"
 	"encoding/json"
-	"fmt"
-	"io"
+	"fmt" 
 	"net/http"
 	"os"
 
@@ -16,16 +16,30 @@ import (
 
 
 var URL string = "https://api.telegram.org/"
+var active bool
+var token string
+var chatId int 
+
 
 func Send(msg string)(string, error){
-	tokenTelegram := getToken() 
-	resp , err := http.Post(URL+"bot"+ tokenTelegram + "/" + "sendMessage")
+
+	if(active){
+		Body := mystruct.SendMessage{ChatId: chatId, Text: msg}
+		respp, _ := json.Marshal(Body)
+		resp , err := http.Post(URL+"bot"+ token + "/" + "sendMessage", "application/json", bytes.NewBuffer(respp))
+		if(err != nil){
+			fmt.Println(err.Error())
+		}
+		fmt.Println(resp.StatusCode)	
+		return "", nil
+	}
 	return "", nil
+	
 }
 
 
 func getToken()string{
-	jsn,err := os.ReadFile("../info.json")
+	jsn,err := os.ReadFile("./info.json")
 	if(err != nil){
 		panic(" No existe el archivo info.json")
 	}
@@ -35,10 +49,7 @@ func getToken()string{
 	if(resp!=nil){
 		fmt.Println(resp.Error())
 	}
-	if(Data.TelegramToken  == "" && verifyToken(Data.TelegramToken) == false){
-		panic("Token invalido")
-	}
-	return Data.TelegramToken
+	return Data.User.TelegramToken
 
 }
 
@@ -51,14 +62,48 @@ func verifyToken(token string)bool{
 	// body, err := io.ReadAll(resp.Body)
 	// defer resp.Body.Close()
 
-	if(resp.StatusCode == 200){
-		return true
+	if(resp.StatusCode != 200){
+		fmt.Println("Token incorrecto")
+		return false
 	}
-	return false
+	
+	return true
 
 }
 
+func VerifyUserStatus(){
+	var Info mystruct.Docs
 
+	body, er := os.ReadFile("./info.json")
+	if(er != nil){
+		panic("No existe el archivo info.json")
+	}
+	
+	resp := json.Unmarshal([]byte(string(body)), &Info)
+	if(resp != nil){
+		fmt.Println(resp)
+	}
+	if(Info.User.Active == true){
+
+		fmt.Println("Configurando bot de telegram")
+		if(Info.User.TelegramToken == " "){
+			fmt.Println("Token vacio")
+			return
+		}
+
+		if(verifyToken(Info.User.TelegramToken)){
+			token = Info.User.TelegramToken
+			chatId = Info.User.Id
+			
+			active = true
+			fmt.Println("Token verificado con exito")
+			return
+		}
+	}
+	//fmt.Println("No se configuro un bot de telegram..")
+	active = false
+	
+}
 
 
 

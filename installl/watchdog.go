@@ -1,25 +1,28 @@
 package main
 
 import (
-	"dog/dog"
+	
+	"dog/telegram"
 	"fmt"
 	"os"
-	
 	"os/signal"
-	
 	"syscall"
+	"dog/dog"
 )
+
+
 
 
 func main(){
 	
+	telegram.VerifyUserStatus()
 	var filesToAnalize []string
 	ch := make(chan os.Signal, 1) //channel
 
 
 
 	files, errFile := dog.GetFiles(dog.ReadDocs().File.Paths)
-	cantidadCarpetas, dirsFiles, errDir := dog.GetFilesFromDir(dog.ReadDocs().Dir.Paths)
+	amountDirs, dirsFiles, errDir := dog.GetFilesFromDir(dog.ReadDocs().Dir.Paths)
 	
 	if(errFile != nil){
 		fmt.Println(errFile.Error())
@@ -38,7 +41,7 @@ func main(){
 	filesToAnalize = dog.ListCleaner(append(dirsFiles, files...))
 
 
-	//fmt.Println("JIJOOOOOO: ",filesToAnalize)
+	
 	fmt.Print("\n\n\033[1;33m		MONITOREANDO \033[0m")
 
 
@@ -48,7 +51,7 @@ func main(){
 
 		Total Archivos: %d
 	
-	`, cantidadCarpetas, len(files), len(filesToAnalize))
+	`, amountDirs, len(files), len(filesToAnalize))
 
 	
 	fmt.Println(banner)

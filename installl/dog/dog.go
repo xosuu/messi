@@ -5,16 +5,17 @@ import (
 	"errors"
 	"os/exec"
 	"strings"
-
 	"fmt"
 	"log"
 	"os"
 	"time"
 
+
 	//"time"
 	"encoding/json"
 
 	"dog/mystruct"
+	"dog/telegram"
 	
 )
 
@@ -22,21 +23,30 @@ import (
 
 
 func Analize(file string){
-	//var cont int = 0
-	last, _ := os.Stat(file)
+	
+	fil, _ := os.Stat(file)
 	fileName := file
-	er := last.ModTime()
-	//log.Print(fileName)
+	last := fil.ModTime()
+	
+
 	for {
 		time.Sleep(5 * time.Second)
-		fil , err := os.Stat(file)
+		fil , err := os.Stat(fileName)
 		if(err != nil){
-			log.Println(err)
+			
+			msg:= fmt.Sprintf("Archivo > %s eliminado o removido, %s", fileName, time.Now().Format("2006-01-02 15:04:05"))
+			telegram.Send(msg)
+			//log.Println("No pude encontrar el archivo", err)
+			log.Println("Me mori chau")
+			fmt.Println(msg)
+			break
 		}else{
-			if (er != fil.ModTime()){
-				log.Printf("Se modifico el archivo..%s", string(fileName))
-				
-				er = fil.ModTime()
+			if (last != fil.ModTime()){
+				//log.Printf("Se modifico el archivo..%s", string(fileName))
+				msg := fmt.Sprintf("%s Se modifico >> %s", string(fil.ModTime().Format("2006-01-02 15:04:05")),string(fileName))
+				fmt.Println(msg)
+				telegram.Send(msg)
+				last = fil.ModTime()
 			}
 		}
 	}
@@ -44,6 +54,7 @@ func Analize(file string){
 
 
 
+//Leemos los archivos que estan dentro de directorios
 func GetFilesFromDir(PathDir []string)(int, []string, error){
 	data := PathDir
 	
@@ -65,7 +76,7 @@ func GetFilesFromDir(PathDir []string)(int, []string, error){
 		fmt.Println("Carpetas encontradas: ", len(data))
 		if(er != nil){
 			continue
-		}else if( info.IsDir()){
+		}else if( info.IsDir()){ //verifica si es una carpeta real
 			totalDirs += 1
 			out.Reset() //limpiamos para que esta vuelta no se acumule
 			fmt.Println("Verificando carpeta..", data[i])
@@ -99,17 +110,21 @@ func GetFilesFromDir(PathDir []string)(int, []string, error){
 	//fmt.Println(listFiles)
 	for i:=0; i<len(listFiles); i++{
 		time.Sleep(100*time.Millisecond)
-		resp, err := verifyFile(listFiles[i])
+		resp, err := verifyFile(listFiles[i]) //verificamos los archivos 
 		if(err == false){
 			continue
 		}
 		finalList = append(finalList, resp) 
 	}
+
+	//devolvemos la cantidad de carpetas validas, lista de todos los archivos que habia en esa carpeta, nil
 	return totalDirs, finalList, nil
 	
 
 }
 
+
+//Leemos los archivos sueltos sin carpetas
 func GetFiles(paths[]string)([]string, error){
 	var files []string
 	data := paths
@@ -136,6 +151,7 @@ func GetFiles(paths[]string)([]string, error){
 
 
 
+//Verifica si un archivo existe o no
 func verifyFile(filePath string)(string, bool){
 	_, err := os.Stat(filePath)
 
@@ -155,6 +171,7 @@ func verifyFile(filePath string)(string, bool){
 
 
 
+//Lee el info.json y lo parsea en el struct Docs para despuer ser procesado
 
 func ReadDocs()mystruct.Docs{
 
@@ -180,7 +197,7 @@ func ReadDocs()mystruct.Docs{
 
 
 
-
+//hace string.split
 func splitString(info string)[]string{
 	er := strings.ReplaceAll(info, "\n", " ")
 	return strings.Split(er, " ")
@@ -188,12 +205,14 @@ func splitString(info string)[]string{
 }
 
 
-
+//elimina el ultimo elemento
 func deleteLastElement(list []string)[]string{
 	return list[:len(list)-1]
 }
 
 
+
+//limpia espacios vacios etc de una lista 
 func ListCleaner(list[]string)[]string{
 
 	var newList []string

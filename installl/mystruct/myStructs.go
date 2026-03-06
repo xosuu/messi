@@ -10,8 +10,14 @@ type Directory struct{
 	Paths []string `json:"paths"`
 }
 
-type Docs struct{
+type Userr struct {
+	Active bool `json:"active"`
+	Id int `json:"id"`
 	TelegramToken string `json:"telegramToken"`
+}
+
+type Docs struct{
+	User Userr `json:"user"`
 	File Files `json:"file"`
 	Dir  Directory `json:"dir"`
 

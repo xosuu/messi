@@ -1,15 +1,16 @@
 {
-    
-    "telegramToken":".............",
-    
-    
+    "user":{
+        "active":false,
+        "id": 12345678,
+        "telegramToken":"telegramToken"
+    }, 
     "file":
         {
-            "paths":["Asdasd"]
+            "paths":[13213]
         },
 
     "dir":
         {
-            "paths":["./files/", "/workspaces/messi/installl/siu/"]
+            "paths":[]
         }
 }
