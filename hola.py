@@ -2,6 +2,9 @@ import time
 
 
 
+
+
+
 def hola():
     start = time.time()
     u = 0
@@ -9,6 +12,7 @@ def hola():
     for i in range(1, 1000000000):
         u += 1
     now = time.time() - start
-    print(now)  
+    print(now) 
+ 
 
 hola()

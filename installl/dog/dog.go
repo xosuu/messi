@@ -117,7 +117,7 @@ func GetFilesFromDir(PathDir []string)(int, []string, error){
 		finalList = append(finalList, resp) 
 	}
 
-	//devolvemos la cantidad de carpetas validas, lista de todos los archivos que habia en esa carpeta, nil
+	//devolvemos la cantidad de carpetas validas, lista de todos los archivos, nil
 	return totalDirs, finalList, nil
 	
 
@@ -171,7 +171,7 @@ func verifyFile(filePath string)(string, bool){
 
 
 
-//Lee el info.json y lo parsea en el struct Docs para despuer ser procesado
+//Lee el info.json y lo parsea en el struct Docs para ser procesado
 
 func ReadDocs()mystruct.Docs{
 
