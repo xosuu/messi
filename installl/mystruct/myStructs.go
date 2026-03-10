@@ -32,7 +32,12 @@ type SendMessage struct{
 }
 
 
-
+type Data struct{
+	Dirs []string
+	Files []string 
+	TotalDirs int 
+	TotalFiles int
+}
 
 
 

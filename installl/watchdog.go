@@ -1,13 +1,13 @@
 package main
 
 import (
-	
+	"dog/dog"
+	"dog/funcs"
 	"dog/telegram"
 	"fmt"
 	"os"
 	"os/signal"
 	"syscall"
-	"dog/dog"
 )
 
 
@@ -22,7 +22,7 @@ func main(){
 
 
 	files, errFile := dog.GetFiles(dog.ReadDocs().File.Paths)
-	amountDirs, dirsFiles, errDir := dog.GetFilesFromDir(dog.ReadDocs().Dir.Paths)
+	InfoFiles, errDir := dog.GetFilesFromDir(dog.ReadDocs().Dir.Paths)
 	
 	if(errFile != nil){
 		fmt.Println(errFile.Error())
@@ -31,14 +31,14 @@ func main(){
 	if(errDir != nil){
 		fmt.Println(errDir.Error())
 	}
-	fmt.Println(len(files))
-	fmt.Println(len(dirsFiles))
+	// fmt.Println(len(files))
+	// fmt.Println(len(dirsFiles))
 
-
+	//fmt.Println(InfoFiles.Files)
 	
 	
 	
-	filesToAnalize = dog.ListCleaner(append(dirsFiles, files...))
+	filesToAnalize = funcs.ListCleaner(append(InfoFiles.Files, files...))
 
 
 	
@@ -51,7 +51,7 @@ func main(){
 
 		Total Archivos: %d
 	
-	`, amountDirs, len(files), len(filesToAnalize))
+	`, InfoFiles.TotalDirs, len(files), len(filesToAnalize))
 
 	
 	fmt.Println(banner)
@@ -64,6 +64,11 @@ func main(){
 
 	}
 	
+	for carpeta:=0 ; carpeta <len(InfoFiles.Dirs); carpeta ++{
+		go dog.Analize(InfoFiles.Dirs[carpeta])
+	}
+
+
 
 	si := <- ch 
 	
