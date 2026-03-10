@@ -4,14 +4,9 @@ import (
 	"bytes"
 	"errors"
 	"os/exec"
-	
 	"fmt"
-	"log"
 	"os"
 	"time"
-
-
-	//"time"
 	"encoding/json"
 	"dog/funcs"
 	"dog/mystruct"
@@ -37,7 +32,7 @@ func Analize(file string){
 			msg:= fmt.Sprintf("Archivo > %s eliminado o removido, %s", fileName, time.Now().Format("2006-01-02 15:04:05"))
 			telegram.Send(msg)
 			//log.Println("No pude encontrar el archivo", err)
-			log.Println("Me mori chau")
+			//log.Println("Me mori chau")
 			fmt.Println(msg)
 			funcs.WriteLog(msg)
 			break

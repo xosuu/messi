@@ -2,8 +2,8 @@ package main
 
 import (
 	//"encoding/json"
-	"fake/src"
-	"fmt"
+	"fake/dnsmikis"
+	
 )
 
 
@@ -17,23 +17,11 @@ type User  struct{
 
 func main(){
 
-	//var ji User 
-	fmt.Println(Nombre)
-	data := src.VerifyId("asd")
-	fmt.Println(data)
-	// resp := json.Unmarshal([]byte(data), &ji)
+	we := dnsmikis.Dns{Url: "ioio"}
 
-	
-	// fmt.Println(ji.Nombre)
-	// if(resp != nil){
-	// 	fmt.Println(resp)
-	// }
-	// if(ji.Nombre == 0){
-	// 	panic("NO TIENES pPERMISO")
-	// }
-	// fmt.Println("BIENVENIDOOOOOOOO")
+	we.Saludo()
 
-
+	dnsmikis.ReadFile("mikis.txt")
 	
 	
 }

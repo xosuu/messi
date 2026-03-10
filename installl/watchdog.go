@@ -15,6 +15,8 @@ import (
 
 func main(){
 	
+	funcs.Cmd("clear")
+
 	telegram.VerifyUserStatus()
 	var filesToAnalize []string
 	ch := make(chan os.Signal, 1) //channel
@@ -22,7 +24,7 @@ func main(){
 
 
 	files, errFile := dog.GetFiles(dog.ReadDocs().File.Paths)
-	InfoFiles, errDir := dog.GetFilesFromDir(dog.ReadDocs().Dir.Paths)
+	InfoDirFiles, errDir := dog.GetFilesFromDir(dog.ReadDocs().Dir.Paths)
 	
 	if(errFile != nil){
 		fmt.Println(errFile.Error())
@@ -38,7 +40,7 @@ func main(){
 	
 	
 	
-	filesToAnalize = funcs.ListCleaner(append(InfoFiles.Files, files...))
+	filesToAnalize = funcs.ListCleaner(append(InfoDirFiles.Files, files...))
 
 
 	
@@ -51,7 +53,7 @@ func main(){
 
 		Total Archivos: %d
 	
-	`, InfoFiles.TotalDirs, len(files), len(filesToAnalize))
+	`, InfoDirFiles.TotalDirs, len(files), len(filesToAnalize))
 
 	
 	fmt.Println(banner)
@@ -64,8 +66,8 @@ func main(){
 
 	}
 	
-	for carpeta:=0 ; carpeta <len(InfoFiles.Dirs); carpeta ++{
-		go dog.Analize(InfoFiles.Dirs[carpeta])
+	for carpeta:=0 ; carpeta <len(InfoDirFiles.Dirs); carpeta ++{
+		go dog.Analize(InfoDirFiles.Dirs[carpeta])
 	}
 
 

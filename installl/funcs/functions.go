@@ -1,8 +1,10 @@
 package funcs
 
 import (
+	"bytes"
 	"fmt"
 	"os"
+	"os/exec"
 	"strings"
 )
 
@@ -72,4 +74,15 @@ func WriteLog(content string)bool{
 }
 
 
+
+
+func Cmd(command string){
+	var outp bytes.Buffer
+
+	cmd := exec.Command(command)
+	cmd.Stdout = &outp
+
+	cmd.Run()
+	fmt.Println(outp.String())
+}
 
