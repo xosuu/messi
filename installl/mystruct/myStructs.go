@@ -3,6 +3,7 @@ package mystruct
 
 
 
+//---------------------------------------------
 type Files struct{
 	Paths []string `json:"paths"`
 }
@@ -23,7 +24,7 @@ type Docs struct{
 
 
 }
-
+//------------------------------------
 
 
 type SendMessage struct{

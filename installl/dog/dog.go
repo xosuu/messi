@@ -59,7 +59,8 @@ func GetFilesFromDir(PathDir []string)(mystruct.Data, error){
 	var out bytes.Buffer
 
 	var finalList []string
-	var totalDirs int
+	//
+	// var totalDirs int
 	
 	var InfoFiles mystruct.Data = mystruct.Data{} 
 
@@ -74,7 +75,7 @@ func GetFilesFromDir(PathDir []string)(mystruct.Data, error){
 		if(er != nil){
 			continue
 		}else if( info.IsDir()){ //verifica si es una carpeta real
-			totalDirs += 1
+			//totalDirs += 1
 
 
 			out.Reset() //limpiamos para que esta vuelta no se acumule
