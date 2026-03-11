@@ -2,8 +2,8 @@ package main
 
 import (
 	//"encoding/json"
-	"fake/dnsmikis"
-	
+	"fake/dnsmikis/cert"
+	"fmt"
 )
 
 
@@ -11,17 +11,20 @@ var Nombre string
 
 
 
-type User  struct{
-	Nombre int `json:"pepe"`
-}
+
 
 func main(){
 
-	we := dnsmikis.Dns{Url: "ioio"}
+	files := cert.ReadFile("mikis.txt")
+	domain := "https://crt.sh/?q=entel.bo&output=json"
+	fmt.Println(files[1:30])
 
-	we.Saludo()
-
-	dnsmikis.ReadFile("mikis.txt")
+	
+	cert.Get(domain)
+	// for _,v := range files[30:40]{
+	// 	res := dnsmikis.CheckSubdomain(v+"."+domain)
+	// 	fmt.Println(res)
+	// }
 	
 	
 }
