@@ -1,4 +1,4 @@
-package src
+package funcs
 
 import (
 	"bytes"

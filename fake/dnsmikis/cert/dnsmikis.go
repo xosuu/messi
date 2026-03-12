@@ -4,30 +4,26 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-
-	//"net"
 	"net/http"
+
+	// "io"
+	// "net/http"
 	"os"
 	"strings"
-	//"time"
 )
 
+func CheckSubdomain(url string)[]SubDomain{
+	resp:=Get(url)
+	body, err:= io.ReadAll(resp.Body)
+	if(err != nil){
+		fmt.Println(err)
+	}
+	subdomains := ParseData(string(body))
+
+	return subdomains
 
 
-
-// func CheckSubdomain(url string)Domain{
-// 	time.Sleep(200 * time.Millisecond)
-// 	domain := Domain{}
-// 	resp, err := net.LookupIP(url)
-// 	if(err != nil){
-// 		fmt.Println(err.Error())
-// 		return domain
-// 	}
-// 	domain.Url = url
-// 	domain.Ip = resp
-// 	return domain
-
-// }
+}
 
 
 
@@ -46,7 +42,7 @@ func ReadFile(path string)[]string{
 
 }
 
-func Get(url string){
+func Get(url string)*http.Response{
 
 
 	resp, err := http.Get(url)
@@ -55,27 +51,14 @@ func Get(url string){
 		
 	}
 	
-	body, err := io.ReadAll(resp.Body)
-	if(err != nil){
-		fmt.Println(err)
-	}
+	return resp
 
-	
-	subdomains := []SubDomain{}
 
-	jio := strings.Split(string(body), ",")
-	fmt.Println(jio)
-	for i:=0; i<len(jio); i++{
-		//fmt.Println(string(jio[i]))
-		subdomains = append(subdomains, ParseData(string(jio[i])))
-	}
-
-	fmt.Println(jio)
 }
 
 
-func ParseData(content string)SubDomain{
-	var subdomain SubDomain
+func ParseData(content string)[]SubDomain{
+	var subdomain []SubDomain
 	resp := json.Unmarshal([]byte(content), &subdomain)
 	if(resp != nil){
 		fmt.Println(resp.Error())
@@ -85,6 +68,15 @@ func ParseData(content string)SubDomain{
 }
 
 
-func readJson(){
-	file, err := os.ReadFile("testSub")
-}
+// func readJson(){
+// 	file, err := os.ReadFile("testSub")
+// }
+
+
+
+
+
+
+
+
+
