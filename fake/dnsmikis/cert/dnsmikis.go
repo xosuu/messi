@@ -13,13 +13,14 @@ import (
 )
 
 func CheckSubdomain(url string)[]SubDomain{
+	fmt.Println("Check subdomain of ")
 	resp:=Get(url)
 	body, err:= io.ReadAll(resp.Body)
 	if(err != nil){
 		fmt.Println(err)
 	}
 	subdomains := ParseData(string(body))
-
+	
 	return subdomains
 
 

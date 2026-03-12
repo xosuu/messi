@@ -21,7 +21,7 @@ var Nombre string
 func main(){
 
 	files := cert.ReadFile("mikis.txt")
-	domain := "https://crt.sh/?q=entel.bo&output=json"
+	domain := "https://crt.sh/?q=lapatria.bo&output=json"
 	fmt.Println(files[1:30])
 
 

@@ -47,3 +47,19 @@ func CheckIp(url string)[]net.IP{
 
 	return resp
 }
+
+
+
+
+func CheckNs(url string)[]string{
+	resp, err := net.LookupNS(url)
+	if(err != nil){
+		fmt.Println(err.Error())
+	}
+	list := []string{}
+	for _, v := range resp{
+		list = append(list, v.Host)
+	}
+	return list
+}
+
