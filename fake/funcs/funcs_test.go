@@ -9,9 +9,11 @@ import (
 
 
 func TestCheckIp(t *testing.T){
-	url := "lapatria.bo"
+	url := "cv.oruro.gob.bo"
 	r := CheckIp(url)
-	fmt.Println(r)
-	fmt.Println(CheckNs(url))
+	fmt.Println("IP: ",r)
+	fmt.Println("NS: ",CheckNs(url))
 
 }
+
+

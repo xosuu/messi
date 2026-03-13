@@ -21,11 +21,12 @@ var Nombre string
 func main(){
 
 	files := cert.ReadFile("mikis.txt")
-	domain := "https://crt.sh/?q=lapatria.bo&output=json"
+	domain := "oruro.gob.bo"
+	url := fmt.Sprintf("https://crt.sh/?q=%s&output=json", domain)
 	fmt.Println(files[1:30])
 
 
-	subdomain := cert.CheckSubdomain(domain)
+	subdomain := cert.CheckSubdomain(url)
 
 	var subdomains  []string
 	//var listClean []string
