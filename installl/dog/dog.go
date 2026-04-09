@@ -10,14 +10,14 @@ import (
 	"encoding/json"
 	"dog/funcs"
 	"dog/mystruct"
-	"dog/telegram"
+	//"dog/telegram"
 	
 )
 
 
 
 
-func Analize(file string){
+func Analize(file string, c chan string){
 	
 	fil, _ := os.Stat(file)
 	fileName := file
@@ -30,18 +30,20 @@ func Analize(file string){
 		if(err != nil){
 			
 			msg:= fmt.Sprintf("Archivo > %s eliminado o removido, %s", fileName, time.Now().Format("2006-01-02 15:04:05"))
-			telegram.Send(msg)
+			c <- msg
+			//telegram.Send(msg)
 			//log.Println("No pude encontrar el archivo", err)
 			//log.Println("Me mori chau")
-			fmt.Println(msg)
+			//fmt.Println(msg)
 			funcs.WriteLog(msg)
 			break
 		}else{
 			if (last != fil.ModTime()){
 				//log.Printf("Se modifico el archivo..%s", string(fileName))
 				msg := fmt.Sprintf("%s Se modifico >> %s", string(fil.ModTime().Format("2006-01-02 15:04:05")),string(fileName))
-				fmt.Println(msg)
-				telegram.Send(msg)
+				//fmt.Println(msg)
+				//telegram.Send(msg)
+				c <- msg
 				last = fil.ModTime()
 				funcs.WriteLog(msg)
 			}

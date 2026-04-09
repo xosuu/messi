@@ -1,8 +1,8 @@
 {
     "user":{
-        "active":false,
-        "id": 12345678,
-        "telegramToken":"telegramToken"
+        "active":true,
+        "id": 1670980553,
+        "telegramToken":"6782993515:AAHZQygJIzlYhxtFgSx2TWGq6llERK5NENY"
     }, 
     "file":
         {
@@ -11,6 +11,6 @@
 
     "dir":
         {
-            "paths":["/workspaces/messi/installl/"]
+            "paths":["/workspaces/messi/installl/siu/"]
         }
 }

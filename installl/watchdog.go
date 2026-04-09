@@ -20,6 +20,9 @@ func main(){
 	telegram.VerifyUserStatus()
 	var filesToAnalize []string
 	ch := make(chan os.Signal, 1) //channel
+	msg := make(chan string, 10)
+
+
 
 
 
@@ -62,15 +65,23 @@ func main(){
 
 
 	for i:=0 ; i<len(filesToAnalize);i++{
-		go dog.Analize(filesToAnalize[i])
+		
+		go dog.Analize(filesToAnalize[i], msg)
 
 	}
 	
 	for carpeta:=0 ; carpeta <len(InfoDirFiles.Dirs); carpeta ++{
-		go dog.Analize(InfoDirFiles.Dirs[carpeta])
+		go dog.Analize(InfoDirFiles.Dirs[carpeta], msg)
 	}
 
-
+	go func(){
+		fmt.Println("----info----")
+		for {
+			mssg := <- msg 
+			fmt.Println(mssg)
+		}
+		
+	}()
 
 	si := <- ch 
 	
