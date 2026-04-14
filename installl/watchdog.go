@@ -8,6 +8,8 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+	"time"
+	//"time"
 )
 
 
@@ -73,15 +75,22 @@ func main(){
 	for carpeta:=0 ; carpeta <len(InfoDirFiles.Dirs); carpeta ++{
 		go dog.Analize(InfoDirFiles.Dirs[carpeta], msg)
 	}
-
+	
 	go func(){
-		fmt.Println("----info----")
-		for {
-			mssg := <- msg 
-			fmt.Println(mssg)
-		}
 		
+		ticker := time.NewTicker(600 * time.Millisecond)
+		defer ticker.Stop()
+		for{
+			mssg := <- msg 
+			go WriteLog(mssg)
+			
+			go SendAlertTelegram(mssg, *ticker)
+			
+			
+		}
 	}()
+	
+	//go SendAlertTelegram(msg)
 
 	si := <- ch 
 	
@@ -93,6 +102,16 @@ func main(){
 
 
 
+func WriteLog(c string){
+	fmt.Println(c)
+	funcs.WriteLog(c)
+	
+}
 
+func SendAlertTelegram(c string, t time.Ticker){
+	<- t.C
+	telegram.Send(c)
+	
+}
 
 

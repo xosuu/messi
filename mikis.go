@@ -46,6 +46,7 @@ func main(){
 
 
 
+
 var nume int
 func contador(c chan int, limite int, numTarea int){
 	

@@ -35,7 +35,7 @@ func Analize(file string, c chan string){
 			//log.Println("No pude encontrar el archivo", err)
 			//log.Println("Me mori chau")
 			//fmt.Println(msg)
-			funcs.WriteLog(msg)
+			//funcs.WriteLog(msg)
 			break
 		}else{
 			if (last != fil.ModTime()){
@@ -43,9 +43,10 @@ func Analize(file string, c chan string){
 				msg := fmt.Sprintf("%s Se modifico >> %s", string(fil.ModTime().Format("2006-01-02 15:04:05")),string(fileName))
 				//fmt.Println(msg)
 				//telegram.Send(msg)
+				
 				c <- msg
 				last = fil.ModTime()
-				funcs.WriteLog(msg)
+				//funcs.WriteLog(msg)
 			}
 		}
 	}
