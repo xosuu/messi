@@ -1,8 +1,10 @@
 package funcs
 
 import (
+	"fake/IPs"
 	"fmt"
 	"net"
+	"time"
 )
 
 //---------------
@@ -63,3 +65,31 @@ func CheckNs(url string)[]string{
 	return list
 }
 
+
+
+func IsCloudflare(ip string)bool{
+
+	for _, v := range(IPs.CLOUDFLARE){
+
+		time.Sleep(500 * time.Millisecond)
+		_, ipnet, err := net.ParseCIDR(v)
+		if(err != nil){
+			fmt.Println(err)
+			return false
+		}
+		ip := net.ParseIP(ip)
+		if(ipnet.Contains(ip)){
+			//fmt.Println(ip, true, v)
+			fmt.Println("cloudflare")
+			return true
+		// }else{
+		// 	fmt.Println(ip, false, v)
+		// 
+		}
+
+
+	}
+	fmt.Println("No cloudflare")
+	return false
+	
+}

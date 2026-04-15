@@ -21,7 +21,7 @@ var Nombre string
 func main(){
 
 	files := cert.ReadFile("mikis.txt")
-	domain := "oruro.gob.bo"
+	domain := "tigo.com.bo"
 	url := fmt.Sprintf("https://crt.sh/?q=%s&output=json", domain)
 	fmt.Println(files[1:30])
 
@@ -39,7 +39,7 @@ func main(){
 	subs := funcs.DeleteRepeat(subdomains)
 	for _, x := range subs{
 		time.Sleep(100 * time.Millisecond)
-		fmt.Println(x)
+		fmt.Println(x, funcs.CheckIp(x), funcs.IsCloudflare(x[ ]))
 	}
 	
 	// list := []string{"pepe", "gato", "pepe", "perro", "perro"}

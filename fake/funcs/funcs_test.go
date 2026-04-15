@@ -9,7 +9,7 @@ import (
 
 
 func TestCheckIp(t *testing.T){
-	url := "cv.oruro.gob.bo"
+	url := "tigo.com"
 	r := CheckIp(url)
 	fmt.Println("IP: ",r)
 	fmt.Println("NS: ",CheckNs(url))
@@ -17,3 +17,7 @@ func TestCheckIp(t *testing.T){
 }
 
 
+func TestIsCloudflare(t *testing.T){
+	IsCloudflare("190.129.60.137")
+
+}
