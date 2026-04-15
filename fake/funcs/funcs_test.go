@@ -9,7 +9,7 @@ import (
 
 
 func TestCheckIp(t *testing.T){
-	url := "tigo.com"
+	url := "console.nube.entel.bo"
 	r := CheckIp(url)
 	fmt.Println("IP: ",r)
 	fmt.Println("NS: ",CheckNs(url))

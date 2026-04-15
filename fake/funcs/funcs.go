@@ -10,7 +10,8 @@ import (
 //---------------
 func DeleteRepeat(list []string)[]string{
 
-
+	// fmt.Println("Limpiando lista?---")
+	// fmt.Println(list)
 	var newList []string
 
 	for i:=0; i<len(list); i++{
@@ -45,6 +46,7 @@ func CheckIp(url string)[]net.IP{
 	resp, err := net.LookupIP(url)
 	if(err != nil){
 		fmt.Println(err)
+		return []net.IP{net.IPv4(0, 0, 0, 0)}
 	}
 
 	return resp
@@ -71,7 +73,7 @@ func IsCloudflare(ip string)bool{
 
 	for _, v := range(IPs.CLOUDFLARE){
 
-		time.Sleep(500 * time.Millisecond)
+		time.Sleep(50 * time.Millisecond)
 		_, ipnet, err := net.ParseCIDR(v)
 		if(err != nil){
 			fmt.Println(err)
@@ -80,7 +82,7 @@ func IsCloudflare(ip string)bool{
 		ip := net.ParseIP(ip)
 		if(ipnet.Contains(ip)){
 			//fmt.Println(ip, true, v)
-			fmt.Println("cloudflare")
+			//fmt.Println("cloudflare")
 			return true
 		// }else{
 		// 	fmt.Println(ip, false, v)
@@ -89,7 +91,7 @@ func IsCloudflare(ip string)bool{
 
 
 	}
-	fmt.Println("No cloudflare")
+	//fmt.Println("No cloudflare")
 	return false
 	
 }

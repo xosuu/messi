@@ -2,6 +2,7 @@ package cert
 
 import (
 	"encoding/json"
+	"fake/dnsmikis/agents"
 	"fmt"
 	"io"
 	"net/http"
@@ -15,7 +16,6 @@ import (
 
 
 
-var UserAgent string = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
 
 
 func CheckSubdomain(url string)[]SubDomain{
@@ -53,13 +53,13 @@ func ReadFile(path string)[]string{
 }
 
 func Get(url string)*http.Response{
-
+	UserAgent := agents.GetRandomUa()
 
 	req, err := http.NewRequest("GET", url, nil)
 	if(err != nil){
-		fmt.Println("error", err.Error())
+		fmt.Println("error Get:", err.Error())
 	}
-
+	
 	req.Header.Set("User-Agent", UserAgent)
 
 	cli := &http.Client{}
@@ -67,6 +67,9 @@ func Get(url string)*http.Response{
 	resp, err := cli.Do(req)
 	if(err != nil){
 		fmt.Println("Error get ", err.Error())
+	}
+	if(resp.StatusCode != 200){
+		fmt.Println(resp.StatusCode)
 	}
 
 
@@ -88,7 +91,7 @@ func ParseData(content string)[]SubDomain{
 	var subdomain []SubDomain
 	resp := json.Unmarshal([]byte(content), &subdomain)
 	if(resp != nil){
-		fmt.Println("Error Parser")
+		fmt.Println("Error ParserData")
 		fmt.Println(resp.Error())
 		
 	}
