@@ -21,12 +21,13 @@ type Domain struct{
 }
 
 func (d *Domain) CheckNs(){
+	fmt.Println(d.Ip[0])
 	if (string(d.Ip[0]) == "0.0.0.0"){
 		d.Cdn = append(d.Cdn, "No host")
 		return
-	}else{
-		fmt.Println("Check cloudflare")
-		for _, v := range(d.Ip){
+	}
+		//fmt.Println("Check cloudflare")
+	for _, v := range(d.Ip){
 			time.Sleep(50 * time.Millisecond)
 			isCloudflare := funcs.CheckCdn(string(v), IPs.CLOUDFLARE )
 			if(isCloudflare){
@@ -36,9 +37,9 @@ func (d *Domain) CheckNs(){
 			}
 
 		}
-		fmt.Println("Check cloudfront")
-		for _, x := range(d.Ip){
-			ips:=IPs.CLOUDFRONT
+		//fmt.Println("Check cloudfront")
+	for _, x := range(d.Ip){
+			ips:=IPs.GetIps()
 			isCloudFront := funcs.CheckCdn(string(x), ips)
 			if(isCloudFront){
 				d.Cdn = append(d.Cdn, style.GREEN + "Cloudfront" + style.END)
@@ -49,8 +50,8 @@ func (d *Domain) CheckNs(){
 		}
 
 
-		fmt.Println("Check akamai")
-		for _, z := range(d.Ip){
+		//fmt.Println("Check akamai")
+	for _, z := range(d.Ip){
 			
 			isCloudFront := funcs.CheckCdn(string(z), IPs.AKAMAI)
 			if(isCloudFront){
@@ -65,7 +66,7 @@ func (d *Domain) CheckNs(){
 	
 
 
-}
+
 
 
 // func (c *Domain) GetIp() []net.IP{

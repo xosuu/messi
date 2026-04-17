@@ -23,7 +23,7 @@ var Nombre string
 func main(){
 
 	files := cert.ReadFile("mikis.txt")
-	dominio := "entel.bo"
+	dominio := "viva.com.bo"
 	url := fmt.Sprintf("https://crt.sh/?q=%s&output=json", dominio)
 	fmt.Println(files[1:30])
 

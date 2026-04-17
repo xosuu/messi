@@ -55,7 +55,7 @@ func ReadFile(path string)[]string{
 func Get(url string)*http.Response{
 	UserAgent := agents.GetRandomUa()
 	cli := &http.Client{
-		Timeout: 15 * time.Second,
+		Timeout: 20 * time.Second,
 	}
 
 
