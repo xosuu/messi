@@ -1,18 +1,23 @@
 
 import json
 
-with open("ip-ranges.json", "r") as f:
+with open("cloud.json", "r") as f:
 
-    json = json.loads(f.read()) 
+    jsson = json.loads(f.read()) 
 
-print(json["syncToken"])
+print(jsson["creationTime"])
 
 
-with open("front.txt", "w") as f:
+with open("gool.txt", "w") as f:
     cont = 0
-    for i in json["prefixes"]:
+    for i in jsson["prefixes"]:
         cont += 1
-        f.write(i["ip_prefix"]+ " ")
+        try:
+            print(i["ipv4Prefix"])
+            f.write(i["ipv4Prefix"]+ " ")
+        except:
+            pass
+        #f.write(i["ipv4Prefix"]+ " ")
 
     f.close()
 print("Total " , cont)
