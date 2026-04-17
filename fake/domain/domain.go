@@ -5,9 +5,12 @@ import (
 	"fake/IPs"
 	"fake/funcs"
 	"fake/style"
+
+
 	//"fmt"
 	"net"
 	"time"
+	
 )
 
 
@@ -27,8 +30,18 @@ func (d *Domain) CheckNs(){
 		d.Cdn = append(d.Cdn, style.RED,"Not a host", style.END)
 		
 	}
+
+	domainIps := d.Ip
+	// //Eliminar ipv6s de la lista
+	// for i, ip := range(domainIps){
+	// 	if(len(ip) == net.IPv6len){
+	// 		domainIps = slices.Delete(domainIps, i, i+1)
+	// 	}
+	// }
+	// fmt.Println(domainIps)
+
 		//fmt.Println("Check cloudflare")
-	for _, v := range(d.Ip){
+	for _, v := range(domainIps){
 			//fmt.Println(v)
 			time.Sleep(50 * time.Millisecond)
 			isCloudflare := funcs.CheckCdn(v, IPs.CLOUDFLARE)
@@ -43,7 +56,7 @@ func (d *Domain) CheckNs(){
 
 	//fmt.Println("Check cloudfront")
 	ips:=IPs.GetIps("./IPs/front.txt")
-	for _, x := range(d.Ip){
+	for _, x := range(domainIps){
 			
 			isCloudFront := funcs.CheckCdn(x, ips)
 			if(isCloudFront){
@@ -57,7 +70,7 @@ func (d *Domain) CheckNs(){
 
 		//fmt.Println("Check fastly")
 	
-	for _, z := range(d.Ip){
+	for _, z := range(domainIps){
 			
 			isCloudFront := funcs.CheckCdn(z, IPs.FASTLY)
 			if(isCloudFront){
@@ -71,7 +84,7 @@ func (d *Domain) CheckNs(){
 	//fmt.Println("Check Akamai")
 
 	ipsAkamain := IPs.GetIps("./IPs/akamai.txt")
-	for _, j := range(d.Ip){
+	for _, j := range(domainIps){
 			
 			isCloudFront := funcs.CheckCdn(j, ipsAkamain)
 			if(isCloudFront){

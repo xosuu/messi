@@ -23,7 +23,7 @@ var Nombre string
 func main(){
 
 	files := cert.ReadFile("mikis.txt")
-	dominio := "tigo.com.bo"
+	dominio := "agetic.gob.bo"
 	url := fmt.Sprintf("https://crt.sh/?q=%s&output=json", dominio)
 	fmt.Println(files[1:30])
 
@@ -48,7 +48,7 @@ func main(){
 
 	}
 	//Dominio padre
-	dominioPadre := domain.Domain{Name: dominio, Ip: funcs.CheckIp(dominio)}
+	dominioPadre := domain.Domain{Name: dominio, Ip: funcs.CheckIp(dominio, true)}
 	dominioPadre.CheckNs()
 	subdomains = append(subdomains, dominioPadre)
 	//Subdominios
@@ -56,7 +56,7 @@ func main(){
 		//fmt.Print(x)
 		time.Sleep(50 * time.Millisecond)
 
-		domaiin := domain.Domain{Name: x, Ip: funcs.CheckIp(x) }
+		domaiin := domain.Domain{Name: x, Ip: funcs.CheckIp(x, true) }
 		domaiin.CheckNs()
 		subdomains = append(subdomains, domaiin)
 
@@ -72,7 +72,7 @@ func main(){
 	}
 
 
-	fmt.Println(funcs.CheckIp(dominio))
+	fmt.Println(funcs.CheckIp(dominio, false))
 
 	
 }

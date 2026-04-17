@@ -25,6 +25,9 @@ func CheckSubdomain(url string)[]SubDomain{
 	if(err != nil){
 		fmt.Println("Error: ")
 		fmt.Println(err.Error())
+		time.Sleep(5 * time.Second)
+		fmt.Println("Volviendo a intentar")
+		CheckSubdomain(url)
 	}
 	//fmt.Println(string(body))
 	subdomains := ParseData(string(body))
@@ -71,9 +74,7 @@ func Get(url string)*http.Response{
 	resp, err := cli.Do(req)
 	if(err != nil){
 		fmt.Println("Error get ", err.Error())
-		time.Sleep(5 * time.Second)
-		fmt.Println("Volviendo a intentar")
-		Get(url)
+		
 	}
 	if(resp.StatusCode != 200){
 		fmt.Println(resp.StatusCode)

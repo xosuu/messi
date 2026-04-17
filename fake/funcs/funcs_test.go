@@ -11,8 +11,8 @@ import (
 
 
 func TestCheckIp(t *testing.T){
-	url := "console.nube.entel.bo"
-	r := CheckIp(url)
+	url := "money.tigo.com.bo"
+	r := CheckIp(url, true)
 	fmt.Println("IP: ",r)
 	fmt.Println("NS: ",CheckNs(url))
 

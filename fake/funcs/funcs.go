@@ -43,12 +43,26 @@ func elementInList(list []string, element string)bool{
 //------------------
 
 
-func CheckIp(url string)[]net.IP{
+func CheckIp(url string, onlyIpv4 bool)[]net.IP{
+	
+
 	time.Sleep(time.Duration(rand.Intn(50)) * time.Millisecond)
 	resp, err := net.LookupIP(url)
 	if(err != nil){
 		fmt.Println(err)
 		return []net.IP{}
+	}
+	if(onlyIpv4){
+		
+		var ipv4s []net.IP 
+
+		//fmt.Println(len(resp))
+		for i:=0; i<len(resp);i++ {
+			if(len(resp[i]) != net.IPv6len){
+				ipv4s = append(ipv4s, resp[i])
+			}
+		}
+		return ipv4s
 	}
 
 	return resp
