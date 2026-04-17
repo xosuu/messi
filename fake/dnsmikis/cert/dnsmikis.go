@@ -55,7 +55,7 @@ func ReadFile(path string)[]string{
 func Get(url string)*http.Response{
 	UserAgent := agents.GetRandomUa()
 	cli := &http.Client{
-		Timeout: 20 * time.Second,
+		Timeout: 30 * time.Second,
 	}
 
 
@@ -65,12 +65,15 @@ func Get(url string)*http.Response{
 	}
 	
 	req.Header.Set("User-Agent", UserAgent)
-
+	req.Header.Set("Accept", "applicattion/json")
 	
 
 	resp, err := cli.Do(req)
 	if(err != nil){
 		fmt.Println("Error get ", err.Error())
+		time.Sleep(5 * time.Second)
+		fmt.Println("Volviendo a intentar")
+		Get(url)
 	}
 	if(resp.StatusCode != 200){
 		fmt.Println(resp.StatusCode)

@@ -8,6 +8,6 @@ import (
 
 
 func TestGetIps(t *testing.T){
-	resp := GetIps()
+	resp := GetIps("./IPs/")
 	fmt.Println(resp[5])
 }

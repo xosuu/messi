@@ -5,7 +5,7 @@ import (
 	"fake/IPs"
 	"fake/funcs"
 	"fake/style"
-	"fmt"
+	//"fmt"
 	"net"
 	"time"
 )
@@ -21,26 +21,31 @@ type Domain struct{
 }
 
 func (d *Domain) CheckNs(){
-	fmt.Println(d.Ip[0])
-	if (string(d.Ip[0]) == "0.0.0.0"){
-		d.Cdn = append(d.Cdn, "No host")
-		return
+	//fmt.Println(d.Ip)
+	if (len(d.Ip) == 0){
+		//fmt.Println("No host")
+		d.Cdn = append(d.Cdn, style.RED,"Not a host", style.END)
+		
 	}
 		//fmt.Println("Check cloudflare")
 	for _, v := range(d.Ip){
+			//fmt.Println(v)
 			time.Sleep(50 * time.Millisecond)
-			isCloudflare := funcs.CheckCdn(string(v), IPs.CLOUDFLARE )
-			if(isCloudflare){
-				d.Cdn = append(d.Cdn, style.GREEN+"Cloudflare"+style.END)  
+			isCloudflare := funcs.CheckCdn(v, IPs.CLOUDFLARE)
+			//fmt.Println(isCloudflare)
+			if(isCloudflare == true){
+				d.Cdn = append(d.Cdn, style.YELLOW, style.SUB,"Cloudflare", style.END)  
 			}else{
 				d.Cdn = append(d.Cdn, style.RED + "Cloudflare" + style.END) 
 			}
 
 		}
-		//fmt.Println("Check cloudfront")
+
+	//fmt.Println("Check cloudfront")
+	ips:=IPs.GetIps("./IPs/front.txt")
 	for _, x := range(d.Ip){
-			ips:=IPs.GetIps()
-			isCloudFront := funcs.CheckCdn(string(x), ips)
+			
+			isCloudFront := funcs.CheckCdn(x, ips)
 			if(isCloudFront){
 				d.Cdn = append(d.Cdn, style.GREEN + "Cloudfront" + style.END)
 			}else{
@@ -50,10 +55,25 @@ func (d *Domain) CheckNs(){
 		}
 
 
-		//fmt.Println("Check akamai")
+		//fmt.Println("Check fastly")
+	
 	for _, z := range(d.Ip){
 			
-			isCloudFront := funcs.CheckCdn(string(z), IPs.AKAMAI)
+			isCloudFront := funcs.CheckCdn(z, IPs.FASTLY)
+			if(isCloudFront){
+				d.Cdn = append(d.Cdn, style.GREEN + "Fastly" + style.END)
+			}else{
+				d.Cdn = append(d.Cdn, style.RED + "Fastly" + style.END)
+			}
+
+		}
+
+	//fmt.Println("Check Akamai")
+
+	ipsAkamain := IPs.GetIps("./IPs/akamai.txt")
+	for _, j := range(d.Ip){
+			
+			isCloudFront := funcs.CheckCdn(j, ipsAkamain)
 			if(isCloudFront){
 				d.Cdn = append(d.Cdn, style.GREEN + "Akamai" + style.END)
 			}else{
@@ -61,11 +81,11 @@ func (d *Domain) CheckNs(){
 			}
 
 		}
+
+	
 	}
 
 	
-
-
 
 
 

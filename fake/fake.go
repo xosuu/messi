@@ -23,7 +23,7 @@ var Nombre string
 func main(){
 
 	files := cert.ReadFile("mikis.txt")
-	dominio := "viva.com.bo"
+	dominio := "tigo.com.bo"
 	url := fmt.Sprintf("https://crt.sh/?q=%s&output=json", dominio)
 	fmt.Println(files[1:30])
 
@@ -43,9 +43,19 @@ func main(){
 
 	listClean := funcs.DeleteRepeat(listDomains)
 	
+
+	if(len(listClean) > 50){
+
+	}
+	//Dominio padre
+	dominioPadre := domain.Domain{Name: dominio, Ip: funcs.CheckIp(dominio)}
+	dominioPadre.CheckNs()
+	subdomains = append(subdomains, dominioPadre)
+	//Subdominios
 	for _, x := range listClean{
 		//fmt.Print(x)
 		time.Sleep(50 * time.Millisecond)
+
 		domaiin := domain.Domain{Name: x, Ip: funcs.CheckIp(x) }
 		domaiin.CheckNs()
 		subdomains = append(subdomains, domaiin)
@@ -58,11 +68,11 @@ func main(){
 	fmt.Println("Mostrando resultados jijoo")
 	for _, v := range subdomains{
 		time.Sleep(100 * time.Millisecond)
-		fmt.Println(style.GREEN, v.Name, style.END ,style.YELLOW, v.Ip, style.END , v.Cdn)
+		fmt.Println(style.YELLOW, v.Name, style.END ,style.GREEN, v.Ip, style.END , v.Cdn)
 	}
 
 
-	fmt.Println(funcs.CheckIp("distribuidores.entel.bo"))
+	fmt.Println(funcs.CheckIp(dominio))
 
 	
 }

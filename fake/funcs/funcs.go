@@ -1,9 +1,10 @@
 package funcs
 
 import (
-
 	"fmt"
+	"math/rand"
 	"net"
+	"time"
 	//"time"
 )
 
@@ -43,10 +44,11 @@ func elementInList(list []string, element string)bool{
 
 
 func CheckIp(url string)[]net.IP{
+	time.Sleep(time.Duration(rand.Intn(50)) * time.Millisecond)
 	resp, err := net.LookupIP(url)
 	if(err != nil){
 		fmt.Println(err)
-		return []net.IP{net.IPv4(0, 0, 0, 0)}
+		return []net.IP{}
 	}
 
 	return resp
@@ -69,7 +71,7 @@ func CheckNs(url string)[]string{
 
 
 
-func CheckCdn(ip string, rangeIps[]string)bool{
+func CheckCdn(ip net.IP, rangeIps[]string)bool{
 
 	for _, v := range(rangeIps){
 
@@ -80,8 +82,9 @@ func CheckCdn(ip string, rangeIps[]string)bool{
 			fmt.Println("Error checkcnd: "+ v + err.Error())
 			return false
 		}
-		ip := net.ParseIP(ip)
-		if(ipnet.Contains(ip)){
+		ipp := net.ParseIP(ip.String())
+		//fmt.Println(ipnet.Contains(ipp))
+		if(ipnet.Contains(ipp)){
 			//fmt.Println(ip, true, v)
 			//fmt.Println("cloudflare")
 			return true
@@ -92,7 +95,7 @@ func CheckCdn(ip string, rangeIps[]string)bool{
 
 
 	}
-	//fmt.Println("No cloudflare")
+	//fmt.Println(ip)
 	return false
 	
 }
