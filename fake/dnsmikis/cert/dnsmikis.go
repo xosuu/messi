@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-
+	"time"
 	// "io"
 	// "net/http"
 	"os"
@@ -54,6 +54,10 @@ func ReadFile(path string)[]string{
 
 func Get(url string)*http.Response{
 	UserAgent := agents.GetRandomUa()
+	cli := &http.Client{
+		Timeout: 15 * time.Second,
+	}
+
 
 	req, err := http.NewRequest("GET", url, nil)
 	if(err != nil){
@@ -62,7 +66,7 @@ func Get(url string)*http.Response{
 	
 	req.Header.Set("User-Agent", UserAgent)
 
-	cli := &http.Client{}
+	
 
 	resp, err := cli.Do(req)
 	if(err != nil){

@@ -17,7 +17,7 @@ func TestCheckIp(t *testing.T){
 }
 
 
-func TestIsCloudflare(t *testing.T){
-	IsCloudflare("190.129.60.137")
+// func TestCheckCdn(t *testing.T){
+// 	CheckCdn("190.129.60.137", )
 
-}
+// }

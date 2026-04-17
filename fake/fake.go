@@ -3,8 +3,9 @@ package main
 import (
 	//"encoding/json"
 	"fake/dnsmikis/cert"
-	"fake/funcs"
 	"fake/domain"
+	"fake/funcs"
+	"fake/style"
 	"strings"
 	"time"
 
@@ -57,7 +58,7 @@ func main(){
 	fmt.Println("Mostrando resultados jijoo")
 	for _, v := range subdomains{
 		time.Sleep(100 * time.Millisecond)
-		fmt.Println(v.Name,v.Ip, v.Dns)
+		fmt.Println(style.GREEN, v.Name, style.END ,style.YELLOW, v.Ip, style.END , v.Cdn)
 	}
 
 
