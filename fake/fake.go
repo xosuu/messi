@@ -65,7 +65,7 @@ func main(){
 		// fmt.Println(x, ip, funcs.IsCloudflare(string(ipp)))
 	}
 
-	fmt.Println("Mostrando resultados jijoo")
+	fmt.Println("Mostrando resultados j")
 	for _, v := range subdomains{
 		time.Sleep(100 * time.Millisecond)
 		fmt.Println(style.YELLOW, v.Name, style.END ,style.GREEN, v.Ip, style.END , v.Cdn)

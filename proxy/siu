@@ -1,0 +1,41 @@
+package main
+
+import (
+	"fmt"
+	"io"
+	"net"
+	"net/http"
+	"golang.org/x/net/websocket"
+)
+
+// Esta función se ejecuta cada vez que el proxy de GitHub nos manda un WebSocket
+func handleTunnel(ws *websocket.Conn) {
+	fmt.Println("Cliente conectado por WebSocket")
+	defer ws.Close()
+
+	// AQUÍ: Pon la IP real y el puerto SSH (suele ser 22 u 80) de tu cuenta gratuita
+	dest, err := net.Dial("tcp", "198.98.61.214:22")
+	if err != nil {
+		fmt.Println("Error conectando al destino:", err)
+		return
+	}
+	defer dest.Close()
+
+	// Copiado bidireccional mágico: 
+	// Go se encarga de empaquetar y desempaquetar los sobres WebSocket automáticamente
+	go io.Copy(ws, dest)
+	io.Copy(dest, ws)
+}
+
+func main() {
+	fmt.Println("Iniciando servidor WebSocket en puerto 4008")
+
+	// Preparamos la ruta principal ("/") para que acepte WebSockets
+	http.Handle("/", websocket.Handler(handleTunnel))
+
+	// Iniciamos el servidor HTTP
+	err := http.ListenAndServe(":4008", nil)
+	if err != nil {
+		fmt.Println("Error al iniciar servidor:", err)
+	}
+}
