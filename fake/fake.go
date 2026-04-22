@@ -22,8 +22,10 @@ var Nombre string
 
 func main(){
 
+	//info := make(chan string, 10)
+
 	files := cert.ReadFile("mikis.txt")
-	dominio := "agetic.gob.bo"
+	dominio := "tigo.com.bo"
 	url := fmt.Sprintf("https://crt.sh/?q=%s&output=json", dominio)
 	fmt.Println(files[1:30])
 
@@ -52,6 +54,8 @@ func main(){
 	dominioPadre.CheckNs()
 	subdomains = append(subdomains, dominioPadre)
 	//Subdominios
+
+
 	for _, x := range listClean{
 		//fmt.Print(x)
 		time.Sleep(50 * time.Millisecond)
@@ -60,12 +64,9 @@ func main(){
 		domaiin.CheckNs()
 		subdomains = append(subdomains, domaiin)
 
-		// ip := funcs.CheckIp(x)
-		// ipp := ip[0]
-		// fmt.Println(x, ip, funcs.IsCloudflare(string(ipp)))
 	}
 
-	fmt.Println("Mostrando resultados j")
+	fmt.Println("Mostrando resultados ")
 	for _, v := range subdomains{
 		time.Sleep(100 * time.Millisecond)
 		fmt.Println(style.YELLOW, v.Name, style.END ,style.GREEN, v.Ip, style.END , v.Cdn)

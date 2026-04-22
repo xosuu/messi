@@ -7,6 +7,7 @@ import (
 	"io"
 	"net/http"
 	"time"
+
 	// "io"
 	// "net/http"
 	"os"
@@ -58,13 +59,16 @@ func ReadFile(path string)[]string{
 func Get(url string)*http.Response{
 	UserAgent := agents.GetRandomUa()
 	cli := &http.Client{
-		Timeout: 30 * time.Second,
+		Timeout: 40 * time.Second,
 	}
 
 
 	req, err := http.NewRequest("GET", url, nil)
 	if(err != nil){
 		fmt.Println("error Get:", err.Error())
+		time.Sleep(5 * time.Second)
+		fmt.Printf("\r Volviendo a intentar")
+		Get(url)
 	}
 	
 	req.Header.Set("User-Agent", UserAgent)
@@ -74,6 +78,9 @@ func Get(url string)*http.Response{
 	resp, err := cli.Do(req)
 	if(err != nil){
 		fmt.Println("Error get ", err.Error())
+		time.Sleep(5 * time.Second)
+		fmt.Printf("\r Volviendo a intentar")
+		Get(url)
 		
 	}
 	if(resp.StatusCode != 200){

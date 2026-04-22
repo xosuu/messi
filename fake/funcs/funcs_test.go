@@ -25,3 +25,12 @@ func TestCheckCdn(t *testing.T){
 	fmt.Println(ji)
 
 }
+
+
+
+func TestSplitJobs(t *testing.T){
+	lista := []int{23, 4, 23, 656, 12, 24, 56, 12, 67, 12, 7, 12, 7, 23, 56, 23, 5, 3, 43, 12, 34, 56, 76, 3, 45, 2, 6, 2}
+	s:=SplitJobs(lista, 9)
+
+	fmt.Println(s)
+}

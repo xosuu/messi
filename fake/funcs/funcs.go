@@ -113,3 +113,46 @@ func CheckCdn(ip net.IP, rangeIps[]string)bool{
 	return false
 	
 }
+
+
+//Dividimos un array en pequenos chunks
+//Lo convertimos en un array bidimensional [[1,2,3], [4,5,6]]
+
+func SplitJobs(list []int, numThread int)[][]int {
+	newArray := [][]int{}
+
+
+	nElementos := len(list) / numThread
+	resto := len(list) % numThread
+	
+	
+	//fmt.Println(list)
+	indice := 0 
+	final := nElementos
+	for i :=1; i<=numThread; i++{
+		//time.Sleep(1 * time.Second)
+		fin := final * i
+		chunk := list[indice : fin]
+	
+		//fmt.Println("Inicio: ", i, fin)
+		
+		if(resto != 0 && i == numThread){ //Si hay restantes (resto) y es el ultimo chunk se anade los elementos a este ultimo 
+			for _, restante := range list[fin:]{
+				chunk = append(chunk, restante)
+			// 	fmt.Println(restante)
+			 }
+			// fmt.Println(list[fin:])
+			// fmt.Println("Si hay restante")
+			// fmt.Println(chunk)
+		}
+
+		newArray = append(newArray, chunk)
+		//fmt.Println(chunk)
+
+		indice = fin
+	}
+	return newArray
+
+}
+
+
