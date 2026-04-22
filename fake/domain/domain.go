@@ -32,13 +32,7 @@ func (d *Domain) CheckNs(){
 	}
 
 	domainIps := d.Ip
-	// //Eliminar ipv6s de la lista
-	// for i, ip := range(domainIps){
-	// 	if(len(ip) == net.IPv6len){
-	// 		domainIps = slices.Delete(domainIps, i, i+1)
-	// 	}
-	// }
-	// fmt.Println(domainIps)
+	
 
 		//fmt.Println("Check cloudflare")
 	for _, v := range(domainIps){

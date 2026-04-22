@@ -2,6 +2,7 @@ package cert
 
 import (
 	"encoding/json"
+
 	"fake/dnsmikis/agents"
 	"fmt"
 	"io"
@@ -19,21 +20,24 @@ import (
 
 
 
-func CheckSubdomain(url string)[]SubDomain{
+func CheckSubdomain(url string) ([]SubDomain, error){
 	fmt.Println("Check subdomain of ")
-	resp:=Get(url)
+	resp, err := Get(url)
+	if(err != nil){
+		return []SubDomain{}, err
+	}
+
 	body, err:= io.ReadAll(resp.Body)
 	if(err != nil){
-		fmt.Println("Error: ")
-		fmt.Println(err.Error())
-		time.Sleep(5 * time.Second)
-		fmt.Println("Volviendo a intentar")
-		CheckSubdomain(url)
+		// fmt.Println("Error: ")
+		// fmt.Println(err.Error())
+		return []SubDomain{}, err
+		
 	}
 	//fmt.Println(string(body))
 	subdomains := ParseData(string(body))
 	
-	return subdomains
+	return subdomains, nil
 
 
 }
@@ -56,7 +60,7 @@ func ReadFile(path string)[]string{
 
 }
 
-func Get(url string)*http.Response{
+func Get(url string)(*http.Response, error){
 	UserAgent := agents.GetRandomUa()
 	cli := &http.Client{
 		Timeout: 40 * time.Second,
@@ -65,10 +69,8 @@ func Get(url string)*http.Response{
 
 	req, err := http.NewRequest("GET", url, nil)
 	if(err != nil){
-		fmt.Println("error Get:", err.Error())
-		time.Sleep(5 * time.Second)
-		fmt.Printf("\r Volviendo a intentar")
-		Get(url)
+		//fmt.Println("error Get:", err.Error())
+		return nil, fmt.Errorf("Error http NewRquests: %s", err.Error())
 	}
 	
 	req.Header.Set("User-Agent", UserAgent)
@@ -77,14 +79,12 @@ func Get(url string)*http.Response{
 
 	resp, err := cli.Do(req)
 	if(err != nil){
-		fmt.Println("Error get ", err.Error())
-		time.Sleep(5 * time.Second)
-		fmt.Printf("\r Volviendo a intentar")
-		Get(url)
+
+		return nil, fmt.Errorf("Error get: %s", err.Error())
 		
 	}
 	if(resp.StatusCode != 200){
-		fmt.Println(resp.StatusCode)
+		return nil , fmt.Errorf("Error status code: %d", resp.StatusCode)
 	}
 
 
@@ -96,7 +96,7 @@ func Get(url string)*http.Response{
 		
 	// }
 	
-	return resp
+	return resp, nil
 
 
 }

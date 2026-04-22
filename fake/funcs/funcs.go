@@ -46,10 +46,10 @@ func elementInList(list []string, element string)bool{
 func CheckIp(url string, onlyIpv4 bool)[]net.IP{
 	
 
-	time.Sleep(time.Duration(rand.Intn(50)) * time.Millisecond)
+	time.Sleep(time.Duration(rand.Intn(100)) * time.Millisecond)
 	resp, err := net.LookupIP(url)
 	if(err != nil){
-		fmt.Println(err)
+		fmt.Printf("\r %s", err.Error())
 		return []net.IP{}
 	}
 	if(onlyIpv4){
@@ -118,25 +118,25 @@ func CheckCdn(ip net.IP, rangeIps[]string)bool{
 //Dividimos un array en pequenos chunks
 //Lo convertimos en un array bidimensional [[1,2,3], [4,5,6]]
 
-func SplitJobs(list []int, numThread int)[][]int {
-	newArray := [][]int{}
+func SplitArray(list []string, numSplit int)[][]string {
+	newArray := [][]string{}
 
 
-	nElementos := len(list) / numThread
-	resto := len(list) % numThread
+	nElementos := len(list) / numSplit
+	resto := len(list) % numSplit
 	
 	
 	//fmt.Println(list)
 	indice := 0 
 	final := nElementos
-	for i :=1; i<=numThread; i++{
+	for i :=1; i<=numSplit; i++{
 		//time.Sleep(1 * time.Second)
 		fin := final * i
 		chunk := list[indice : fin]
 	
 		//fmt.Println("Inicio: ", i, fin)
 		
-		if(resto != 0 && i == numThread){ //Si hay restantes (resto) y es el ultimo chunk se anade los elementos a este ultimo 
+		if(resto != 0 && i == numSplit){ //Si hay restantes (resto) y es el ultimo chunk se anade los elementos a este ultimo 
 			for _, restante := range list[fin:]{
 				chunk = append(chunk, restante)
 			// 	fmt.Println(restante)
