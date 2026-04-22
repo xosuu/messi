@@ -6,6 +6,7 @@ import (
 	"fake/domain"
 	"fake/funcs"
 	"fake/style"
+	"os"
 	"strings"
 	"time"
 
@@ -22,15 +23,15 @@ var Nombre string
 
 func main(){
 
-	//info := make(chan string, 10)
-
+	
 	files := cert.ReadFile("mikis.txt")
-	dominio := "tigo.com"
+	//dominio := "zetita.online"
+	dominio := os.Args[1]
 	url := fmt.Sprintf("https://crt.sh/?q=%s&output=json", dominio)
 	fmt.Println(files[1:30])
 
 
-	subdomain, err := cert.CheckSubdomain(url)
+	subdomainCrt, err := cert.CheckSubdomain(url)
 	if(err != nil){
 		fmt.Println(err)
 		return
@@ -41,9 +42,9 @@ func main(){
 
 
 	start := time.Now()
-
+	fmt.Println(style.Banner)
 	fmt.Println("Iniciando")
-	for _,v := range subdomain{
+	for _,v := range subdomainCrt{
 		
 		listDomains = append(listDomains, strings.ReplaceAll(v.CommonName, "*.", ""))
 	}
@@ -60,9 +61,7 @@ func main(){
 	//Subdominios
 
 
-	if(len(listClean) > 10){
-		
-	}
+	
 	subdomains = Init(listClean)
 
 	// for _, x := range listClean{
@@ -78,13 +77,15 @@ func main(){
 	fmt.Println("\nMostrando resultados ")
 	for _, v := range subdomains{
 		time.Sleep(100 * time.Millisecond)
-		fmt.Println(style.YELLOW, v.Name, style.END ,style.GREEN, v.Ip, style.END , v.Cdn)
+		//fmt.Println("-------------------------------------------------------------------------------------------")
+		fmt.Println(style.YELLOW, v.Name, style.END ,style.GREEN, v.Ip, style.END ,"\n", v.Cdn)
+		fmt.Println("--------------------------------------------------------------------------------------------------")
 	}
 
 
 	end := time.Since(start)
 	fmt.Println("Terminado en :", end)
-	fmt.Println(funcs.CheckIp(dominio, false))
+	//fmt.Println(funcs.CheckIp(dominio, false))
 
 	
 }
@@ -96,7 +97,7 @@ func Init(lista []string)[]domain.Domain{
 	subdomains := []domain.Domain{}
 
 	dmain := make(chan domain.Domain, 10)
-	limitElements := 10
+	limitElements := 30
 	numThreads := 5
 
 

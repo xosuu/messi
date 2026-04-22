@@ -89,8 +89,29 @@ func (d *Domain) CheckNs(){
 
 		}
 
+
+	ipsGoogle := IPs.GetIps("./IPs/googl.txt")
+	for _, j := range(domainIps){
+			
+			isGoogleCloud := funcs.CheckCdn(j, ipsGoogle)
+			if(isGoogleCloud){
+				d.Cdn = append(d.Cdn, style.GREEN + "Google" + style.END)
+			}else{
+				d.Cdn = append(d.Cdn, style.RED + "Google" + style.END)
+			}
+
+		}
+
+
+
+
+
 	
 	}
+
+
+
+	
 
 	
 

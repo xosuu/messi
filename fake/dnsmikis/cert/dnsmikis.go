@@ -2,15 +2,9 @@ package cert
 
 import (
 	"encoding/json"
-
-	"fake/dnsmikis/agents"
+	"fake/dnsmikis/requests"
 	"fmt"
 	"io"
-	"net/http"
-	"time"
-
-	// "io"
-	// "net/http"
 	"os"
 	"strings"
 )
@@ -22,7 +16,7 @@ import (
 
 func CheckSubdomain(url string) ([]SubDomain, error){
 	fmt.Println("Check subdomain of ")
-	resp, err := Get(url)
+	resp, err := requests.Get(url)
 	if(err != nil){
 		return []SubDomain{}, err
 	}
@@ -60,46 +54,6 @@ func ReadFile(path string)[]string{
 
 }
 
-func Get(url string)(*http.Response, error){
-	UserAgent := agents.GetRandomUa()
-	cli := &http.Client{
-		Timeout: 40 * time.Second,
-	}
-
-
-	req, err := http.NewRequest("GET", url, nil)
-	if(err != nil){
-		//fmt.Println("error Get:", err.Error())
-		return nil, fmt.Errorf("Error http NewRquests: %s", err.Error())
-	}
-	
-	req.Header.Set("User-Agent", UserAgent)
-	req.Header.Set("Accept", "applicattion/json")
-	
-
-	resp, err := cli.Do(req)
-	if(err != nil){
-
-		return nil, fmt.Errorf("Error get: %s", err.Error())
-		
-	}
-	if(resp.StatusCode != 200){
-		return nil , fmt.Errorf("Error status code: %d", resp.StatusCode)
-	}
-
-
-
-	// resp, err := http.Get(url)
-	// if(err != nil){
-	// 	fmt.Println("Error get")
-	// 	fmt.Println(err.Error())
-		
-	// }
-	
-	return resp, nil
-
-
-}
 
 
 func ParseData(content string)[]SubDomain{
