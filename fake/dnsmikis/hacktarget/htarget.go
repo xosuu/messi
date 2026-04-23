@@ -11,17 +11,21 @@ import (
 
 
 
-func CheckSubdomain(url string)([]string, error){
+func CheckSubdomain(url string)([][]string, error){
 
 	resp, err := requests.Get(url)
 	if(err != nil){
 		fmt.Println("Error: ", err.Error())
-		return []string{}, errors.New(err.Error())
+		return [][]string{}, errors.New(err.Error())
 	}
 
 	body, _ := io.ReadAll(resp.Body)
+	list := [][]string{}
+	for _, v := range strings.Split(string(body), "\n"){
+		list = append(list, strings.Split(v, ","))
+	}	
 
-	return strings.Split(string(body), "\n"), nil
+	return list, nil
 }
 
 

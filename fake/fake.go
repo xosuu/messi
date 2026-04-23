@@ -3,6 +3,7 @@ package main
 import (
 	//"encoding/json"
 	"fake/dnsmikis/cert"
+	//"fake/dnsmikis/hacktarget"
 	"fake/domain"
 	"fake/funcs"
 	"fake/style"
@@ -27,15 +28,23 @@ func main(){
 	files := cert.ReadFile("mikis.txt")
 	//dominio := "zetita.online"
 	dominio := os.Args[1]
-	url := fmt.Sprintf("https://crt.sh/?q=%s&output=json", dominio)
+	urlTrg := fmt.Sprintf("https://crt.sh/?q=%s&output=json", dominio)
+	//urlHtarget := fmt.Sprintf("https://api.hackertarget.com/hostsearch/?q=", dominio)
 	fmt.Println(files[1:30])
 
 
-	subdomainCrt, err := cert.CheckSubdomain(url)
+	subdomainCrt, err := cert.CheckSubdomain(urlTrg)
 	if(err != nil){
 		fmt.Println(err)
 		return
 	}
+
+	// subDomainHtarge, err := hacktarget.CheckSubdomain(urlHtarget)
+	// if(err != nil){
+	// 	fmt.Println(err)
+	// 	return
+	// }
+
 	
 	var subdomains []domain.Domain
 	var listDomains []string
@@ -44,11 +53,15 @@ func main(){
 	start := time.Now()
 	fmt.Println(style.Banner)
 	fmt.Println("Iniciando")
+	
+	//crt.sh
 	for _,v := range subdomainCrt{
-		
 		listDomains = append(listDomains, strings.ReplaceAll(v.CommonName, "*.", ""))
 	}
-
+	//hackertarget.com
+	// for i, _ := range subDomainHtarge{
+	// 	listDomains = append(listDomains, string(subDomainHtarge[i][0]))
+	// }
 
 	listClean := funcs.DeleteRepeat(listDomains)
 	

@@ -9,7 +9,7 @@ import(
 func Get(url string)(*http.Response, error){
 	UserAgent := agents.GetRandomUa()
 	cli := &http.Client{
-		Timeout: 40 * time.Second,
+		Timeout: 30 * time.Second,
 	}
 
 
