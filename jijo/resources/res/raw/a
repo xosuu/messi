@@ -1,0 +1,15 @@
+{
+  "ClientVersion": "123", /* Must be a number in a string. */
+  "MigrateUpgradeDownloadFilename": "",
+  "PropagationChannelId": "...",
+  "SponsorId": "...",
+  "RemoteServerListURLs": [...],
+  "ObfuscatedServerListRootURLs": [...],
+  "RemoteServerListSignaturePublicKey": "...",
+  "ServerEntrySignaturePublicKey": "...",
+  "ExchangeObfuscationKey": "...",
+  "UpstreamProxyUrl": "",
+  "EmitDiagnosticNotices": true,
+  "EmitDiagnosticNetworkParameters": true,
+  "EgressRegion": ""
+}

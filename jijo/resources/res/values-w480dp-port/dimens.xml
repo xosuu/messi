@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="p7">0dp</dimen>
+    <dimen name="p9">22dp</dimen>
+    <dimen name="p_">48dp</dimen>
+    <dimen name="pd">48dp</dimen>
+    <dimen name="pe">48dp</dimen>
+    <dimen name="pr">0dp</dimen>
+</resources>

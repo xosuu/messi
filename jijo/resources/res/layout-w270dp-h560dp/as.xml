@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@color/bu"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/tr">
+        <include layout="@layout/at"/>
+        <include layout="@layout/au"/>
+    </LinearLayout>
+    <include
+        android:layout_width="@dimen/c4"
+        android:layout_height="@dimen/tr"
+        layout="@layout/av"/>
+    <include layout="@layout/c3"/>
+</LinearLayout>

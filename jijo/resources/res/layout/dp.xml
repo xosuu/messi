@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/qp"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:background="@drawable/ii"
+    android:paddingLeft="@dimen/bh"
+    android:paddingTop="@dimen/bi"
+    android:paddingRight="@dimen/bh"
+    android:paddingBottom="@dimen/bi"
+    android:focusable="true"
+    android:clickable="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/ks"
+        android:paddingTop="20dp"
+        android:focusable="true"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_launcher"/>
+    <TextView
+        android:textAppearance="@style/ke"
+        android:id="@+id/y9"
+        android:paddingTop="@dimen/t9"
+        android:focusable="true"
+        android:visibility="gone"
+        android:clickable="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="HTTP Custom"/>
+    <TextView
+        android:textAppearance="@style/ke"
+        android:id="@+id/uw"
+        android:focusable="true"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/t9"
+        android:text="2017 © ePro Dev. Team"/>
+    <TextView
+        android:textSize="12sp"
+        android:id="@+id/ux"
+        android:focusable="true"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="v0.1"/>
+</LinearLayout>

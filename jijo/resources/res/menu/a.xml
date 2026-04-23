@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:icon="@drawable/f2"
+        android:id="@+id/p4"
+        android:title="@string/p1"/>
+    <item android:title="@string/p_">
+        <menu>
+            <item
+                android:icon="@drawable/fd"
+                android:id="@+id/p5"
+                android:title="@string/p3"/>
+            <item
+                android:icon="@drawable/fw"
+                android:id="@+id/p9"
+                android:title="@string/p7"/>
+        </menu>
+    </item>
+    <item android:title="@string/oy">
+        <menu>
+            <item
+                android:icon="@drawable/fu"
+                android:id="@+id/p8"
+                android:title="@string/p5"/>
+            <item
+                android:icon="@drawable/g5"
+                android:id="@+id/pb"
+                android:title="@string/pa"/>
+        </menu>
+    </item>
+    <item android:title="@string/p8">
+        <menu>
+            <item
+                android:icon="@drawable/es"
+                android:id="@+id/p1"
+                android:title="@string/oz"/>
+            <item
+                android:icon="@drawable/g1"
+                android:id="@+id/p_"
+                android:title="@string/p9"/>
+            <item
+                android:icon="@drawable/fm"
+                android:id="@+id/p6"
+                android:title="@string/u0"/>
+            <item
+                android:icon="@drawable/fq"
+                android:id="@+id/p3"
+                android:title="@string/mx"/>
+            <item
+                android:icon="@drawable/ft"
+                android:id="@+id/p7"
+                android:title="@string/p4"/>
+            <item
+                android:icon="@drawable/eu"
+                android:id="@+id/p2"
+                android:title="@string/p0"/>
+            <item
+                android:icon="@drawable/co"
+                android:id="@+id/p0"
+                android:title="@string/ox"/>
+            <item
+                android:icon="@drawable/e0"
+                android:id="@+id/oz"
+                android:title="@string/je"/>
+        </menu>
+    </item>
+</menu>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="a">
+        <item quantity="one">Daily</item>
+        <item quantity="other">Every %d days</item>
+    </plurals>
+    <plurals name="b">
+        <item quantity="one">One day left</item>
+        <item quantity="other">%d days left</item>
+    </plurals>
+    <plurals name="c">
+        <item quantity="one">; for one time</item>
+        <item quantity="other">; for %d times</item>
+    </plurals>
+    <plurals name="d">
+        <item quantity="one">Hourly</item>
+        <item quantity="other">Every %d hours</item>
+    </plurals>
+    <plurals name="e">
+        <item quantity="one">One hour left</item>
+        <item quantity="other">%d hours left</item>
+    </plurals>
+    <plurals name="f">
+        <item quantity="one">One minute left</item>
+        <item quantity="other">%d minutes left</item>
+    </plurals>
+    <plurals name="g">
+        <item quantity="one">Monthly %2$s</item>
+        <item quantity="other">Every %1$d months %2$s</item>
+    </plurals>
+    <plurals name="h">
+        <item quantity="one">One month left</item>
+        <item quantity="other">%d months left</item>
+    </plurals>
+    <plurals name="i">
+        <item quantity="one">%d new notification</item>
+        <item quantity="other">%d new notifications</item>
+    </plurals>
+    <plurals name="j">
+        <item quantity="one">For %d event</item>
+        <item quantity="other">For %d events</item>
+    </plurals>
+    <plurals name="k">
+        <item quantity="one">Every %d day</item>
+        <item quantity="other">Every %d days</item>
+    </plurals>
+    <plurals name="l">
+        <item quantity="one">Every %d hour</item>
+        <item quantity="other">Every %d hours</item>
+    </plurals>
+    <plurals name="m">
+        <item quantity="one">Every %d month</item>
+        <item quantity="other">Every %d months</item>
+    </plurals>
+    <plurals name="n">
+        <item quantity="one">Every %d week</item>
+        <item quantity="other">Every %d weeks</item>
+    </plurals>
+    <plurals name="o">
+        <item quantity="one">Every %d year</item>
+        <item quantity="other">Every %d years</item>
+    </plurals>
+    <plurals name="p">
+        <item quantity="one">Weekly on %2$s</item>
+        <item quantity="other">Every %1$d weeks on %2$s</item>
+    </plurals>
+    <plurals name="q">
+        <item quantity="one">Yearly %2$s</item>
+        <item quantity="other">Every %1$d years %2$s</item>
+    </plurals>
+</resources>

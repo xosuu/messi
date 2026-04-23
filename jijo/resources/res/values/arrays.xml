@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="a">
+        <item>ACL</item>
+        <item>BASELINE-CONTROL</item>
+        <item>BCOPY</item>
+        <item>BDELETE</item>
+        <item>BMOVE</item>
+        <item>BPROPFIND</item>
+        <item>BPROPATCH</item>
+        <item>BPROPPATCH</item>
+        <item>BIND</item>
+        <item>CHECKIN</item>
+        <item>CHECKOUT</item>
+        <item>COPY</item>
+        <item>CONNECT</item>
+        <item>CONNECTPATCH</item>
+        <item>DELETE</item>
+        <item>GET</item>
+        <item>HEAD</item>
+        <item>LABEL</item>
+        <item>LOCK</item>
+        <item>LINK</item>
+        <item>MKCALENDAR</item>
+        <item>MERGE</item>
+        <item>MKREDIRECTREF</item>
+        <item>MKCOL</item>
+        <item>MKACTIVITY</item>
+        <item>MKWORKSPACE</item>
+        <item>MOVE</item>
+        <item>NOTIFY</item>
+        <item>OPTION</item>
+        <item>OPTIONS</item>
+        <item>ORDERPATCH</item>
+        <item>PATCH</item>
+        <item>PRI</item>
+        <item>POST</item>
+        <item>POLL</item>
+        <item>PROPATCH</item>
+        <item>PROPPATCH</item>
+        <item>PROPFIND</item>
+        <item>PURGE</item>
+        <item>PUT</item>
+        <item>REBIND</item>
+        <item>REPORT</item>
+        <item>SEARCH</item>
+        <item>SUBSCRIBE</item>
+        <item>TRACE</item>
+        <item>UNBIND</item>
+        <item>UNLINK</item>
+        <item>UNCHECKOUT</item>
+        <item>UNLOCK</item>
+        <item>UNSUBSCRIBE</item>
+        <item>UPDATE</item>
+        <item>UPDATEREDIRECTREF</item>
+        <item>VERSION-CONTROL</item>
+        <item>WEBDAV</item>
+        <item>WEBDA</item>
+        <item>X-MS-ENUMATTS</item>
+    </array>
+    <array name="b">
+        <item>SX</item>
+        <item>BQ</item>
+        <item>CW</item>
+        <item>SS</item>
+    </array>
+    <array name="c">
+        <item>Sint Maarten</item>
+        <item>Caribbean Netherlands</item>
+        <item>Curaçao</item>
+        <item>South Sudan</item>
+    </array>
+    <array name="d">
+        <item>1</item>
+        <item>2</item>
+        <item>5</item>
+        <item>50</item>
+        <item>-1</item>
+    </array>
+    <array name="e">
+        <item>All</item>
+        <item>Country</item>
+        <item>Protocol</item>
+    </array>
+    <array name="f">
+        <item>Normal</item>
+        <item>Front Inject</item>
+        <item>Back Inject</item>
+        <item>Front Query</item>
+        <item>Back Query</item>
+        <item>Websocket</item>
+    </array>
+    <array name="g">
+        <item>TCP</item>
+        <item>UDP</item>
+    </array>
+    <array name="h">
+        <item>REPEAT HOURLY</item>
+        <item>REPEAT DAILY</item>
+        <item>REPEAT WEEKLY</item>
+        <item>REPEAT MONTHLY</item>
+        <item>REPEAT YEARLY</item>
+    </array>
+    <array name="i">
+        <item>on every first Friday</item>
+        <item>on every second Friday</item>
+        <item>on every third Friday</item>
+        <item>on every fourth Friday</item>
+        <item>on every last Friday</item>
+    </array>
+    <array name="j">
+        <item>on every first Monday</item>
+        <item>on every second Monday</item>
+        <item>on every third Monday</item>
+        <item>on every fourth Monday</item>
+        <item>on every last Monday</item>
+    </array>
+    <array name="k">
+        <item>on every first Saturday</item>
+        <item>on every second Saturday</item>
+        <item>on every third Saturday</item>
+        <item>on every fourth Saturday</item>
+        <item>on every last Saturday</item>
+    </array>
+    <array name="l">
+        <item>on every first Sunday</item>
+        <item>on every second Sunday</item>
+        <item>on every third Sunday</item>
+        <item>on every fourth Sunday</item>
+        <item>on every last Sunday</item>
+    </array>
+    <array name="m">
+        <item>on every first Thursday</item>
+        <item>on every second Thursday</item>
+        <item>on every third Thursday</item>
+        <item>on every fourth Thursday</item>
+        <item>on every last Thursday</item>
+    </array>
+    <array name="n">
+        <item>on every first Tuesday</item>
+        <item>on every second Tuesday</item>
+        <item>on every third Tuesday</item>
+        <item>on every fourth Tuesday</item>
+        <item>on every last Tuesday</item>
+    </array>
+    <array name="o">
+        <item>on every first Wednesday</item>
+        <item>on every second Wednesday</item>
+        <item>on every third Wednesday</item>
+        <item>on every fourth Wednesday</item>
+        <item>on every last Wednesday</item>
+    </array>
+    <array name="p">
+        <item>easyPro</item>
+        <item>Custom</item>
+    </array>
+    <array name="q">
+        <item>easyPro</item>
+        <item>Custom</item>
+    </array>
+    <array name="r">
+        <item>Asc</item>
+        <item>Desc</item>
+    </array>
+    <array name="s">
+        <item>Australia/Darwin</item>
+        <item>Australia/Adelaide</item>
+        <item>Australia/Brisbane</item>
+        <item>Australia/Sydney</item>
+        <item>America/Dawson_Creek</item>
+        <item>America/Regina</item>
+        <item>America/Atikokan</item>
+        <item>America/Blanc-Sablon</item>
+        <item>Pacific/Honolulu</item>
+        <item>America/Adak</item>
+        <item>America/Metlakatla</item>
+        <item>America/Phoenix</item>
+        <item>America/Tijuana</item>
+        <item>America/Ojinaga</item>
+        <item>America/Matamoros</item>
+        <item>America/Hermosillo</item>
+        <item>Africa/Juba</item>
+        <item>America/Kralendijk</item>
+        <item>America/Lower_Princes</item>
+        <item>Europe/Minsk</item>
+        <item>Europe/Kaliningrad</item>
+        <item>America/Porto_Velho</item>
+        <item>America/Belem</item>
+    </array>
+    <array name="t">
+        <item>Australian Central - NT</item>
+        <item>Australian Central - SA</item>
+        <item>Australian Eastern - QLD</item>
+        <item>Australian Eastern - NSW</item>
+        <item>Mountain Standard - Dawson Creek</item>
+        <item>Central Standard - Saskatchewan</item>
+        <item>Eastern Standard - Atikokan</item>
+        <item>Atlantic Standard - Quebec</item>
+        <item>Hawaii-Aleutian - Hawaii</item>
+        <item>Hawaii-Aleutian - Alaska</item>
+        <item>Pacific Standard - Metlakatla</item>
+        <item>Mountain Standard - Arizona</item>
+        <item>Pacific - Baja California</item>
+        <item>Mountain - Chihuahua</item>
+        <item>Central - Tamaulipas</item>
+        <item>Mountain - Sonora</item>
+        <item>East Africa Time</item>
+        <item>Atlantic Standard Time</item>
+        <item>Atlantic Standard Time</item>
+        <item>Eastern European Time</item>
+        <item>Kaliningrad Time</item>
+        <item>Amazon - Rondônia</item>
+        <item>Brasilia - Pará</item>
+    </array>
+    <array name="u">
+        <item>0</item>
+        <item>1</item>
+        <item />
+    </array>
+    <array name="v">
+        <item>None</item>
+        <item>Default</item>
+        <item>Firefox</item>
+        <item>Chrome</item>
+        <item>Opera Mini</item>
+        <item>Puffin</item>
+        <item>Safari</item>
+        <item>UCBrowser</item>
+    </array>
+</resources>

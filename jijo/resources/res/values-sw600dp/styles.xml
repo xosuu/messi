@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="vw" parent="@style/g4">
+        <item name="a32">ed</item>
+        <item name="a3e">jf</item>
+    </style>
+</resources>

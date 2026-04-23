@@ -1,0 +1,27 @@
+package com.google.android.gms.internal.ads;
+
+import android.os.Parcel;
+
+/* JADX INFO: loaded from: classes.dex */
+public final class ib0 extends pb implements dm {
+    @Override // com.google.android.gms.internal.ads.pb
+    public final boolean a0(int i10, Parcel parcel, Parcel parcel2) {
+        if (i10 != 1) {
+            if (i10 != 2) {
+                return false;
+            }
+            parcel.readInt();
+            qb.b(parcel);
+        }
+        parcel2.writeNoException();
+        return true;
+    }
+
+    @Override // com.google.android.gms.internal.ads.dm
+    public final void zze(int i10) {
+    }
+
+    @Override // com.google.android.gms.internal.ads.dm
+    public final void zzf() {
+    }
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="k" parent="@style/nv">
+        <item name="android:windowBackground">@color/mv</item>
+        <item name="android:editTextStyle">@style/o</item>
+        <item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
+        <item name="gp">@color/b_</item>
+        <item name="he">@color/bb</item>
+        <item name="hg">@color/bc</item>
+        <item name="ko">@style/o</item>
+    </style>
+</resources>

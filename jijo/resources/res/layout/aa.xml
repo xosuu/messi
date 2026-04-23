@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/br"
+    android:paddingLeft="@dimen/bh"
+    android:paddingTop="@dimen/bi"
+    android:paddingRight="@dimen/bh"
+    android:paddingBottom="@dimen/bi"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:id="@+id/x0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Package Name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"/>
+    <ImageView
+        android:id="@+id/fn"
+        android:background="@drawable/d4"
+        android:focusable="true"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:contentDescription="close"
+        android:layout_alignParentEnd="true"
+        app:srcCompat="0x7f0801c8"/>
+    <View
+        android:id="@+id/b5"
+        android:background="@android:color/darker_gray"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/x0"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/lw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:hint="Separated by new line (enter)"
+        android:layout_below="@+id/b5">
+        <EditText
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:gravity="start|top"
+            android:id="@+id/ik"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <Button
+        android:textColor="@color/bf"
+        android:id="@+id/uz"
+        android:background="@drawable/d1"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:text="Submit"
+        android:layout_below="@+id/lw"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"/>
+</RelativeLayout>

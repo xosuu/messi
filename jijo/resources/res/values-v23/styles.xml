@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ar" parent="@android:style/TextAppearance.Material.Widget.ActionBar.Menu">
+    </style>
+    <style name="b1" parent="@android:style/TextAppearance.Material.Widget.Button.Inverse">
+    </style>
+    <style name="bf" parent="@style/e1">
+    </style>
+    <style name="bm" parent="@style/e2">
+    </style>
+    <style name="e1" parent="@style/dz">
+        <item name="d">?android:attr/actionBarItemBackground</item>
+        <item name="q">?android:attr/actionMenuTextAppearance</item>
+        <item name="r">?android:attr/actionMenuTextColor</item>
+        <item name="a7">?android:attr/actionOverflowButtonStyle</item>
+        <item name="ij">@drawable/av</item>
+        <item name="zp">?android:attr/ratingBarStyleIndicator</item>
+        <item name="zq">?android:attr/ratingBarStyleSmall</item>
+    </style>
+    <style name="e2" parent="@style/e0">
+        <item name="d">?android:attr/actionBarItemBackground</item>
+        <item name="q">?android:attr/actionMenuTextAppearance</item>
+        <item name="r">?android:attr/actionMenuTextColor</item>
+        <item name="a7">?android:attr/actionOverflowButtonStyle</item>
+        <item name="ij">@drawable/av</item>
+        <item name="zp">?android:attr/ratingBarStyleIndicator</item>
+        <item name="zq">?android:attr/ratingBarStyleSmall</item>
+    </style>
+    <style name="eq" parent="@android:style/Widget.Material.ActionButton.Overflow">
+    </style>
+    <style name="ew" parent="@android:style/Widget.Material.Button.Borderless.Colored">
+    </style>
+    <style name="ey" parent="@android:style/Widget.Material.Button.Colored">
+        <item name="android:textAppearance">@style/lg</item>
+    </style>
+    <style name="f8" parent="@android:style/Widget.Material.EditText">
+        <item name="android:breakStrategy">0</item>
+        <item name="android:hyphenationFrequency">0</item>
+    </style>
+    <style name="fs" parent="@android:style/Widget.Material.RatingBar.Indicator">
+    </style>
+    <style name="ft" parent="@android:style/Widget.Material.RatingBar.Small">
+    </style>
+    <style name="fz" parent="@android:style/Widget.Material.Spinner.Underlined">
+    </style>
+    <style name="g0" parent="@android:style/Widget.Material.TextView">
+        <item name="android:breakStrategy">1</item>
+        <item name="android:hyphenationFrequency">0</item>
+    </style>
+    <style name="h8" parent="@style/u">
+        <item name="e7">?android:attr/colorBackgroundFloating</item>
+    </style>
+    <style name="qz" parent="@style/cq">
+        <item name="gv">@color/mg</item>
+    </style>
+    <style name="sd" parent="@style/cu">
+        <item name="gv">@color/mg</item>
+    </style>
+    <style name="w0" parent="@style/g5">
+        <item name="b8">@drawable/gg</item>
+        <item name="be">@drawable/gg</item>
+        <item name="bf">@drawable/gg</item>
+    </style>
+    <style name="w1" parent="@style/g6">
+        <item name="b8">@drawable/gg</item>
+        <item name="be">@drawable/gg</item>
+    </style>
+    <style name="xj" parent="@style/ga">
+        <item name="android:background">@drawable/gm</item>
+    </style>
+    <style name="xl" parent="@style/gb">
+        <item name="android:background">@drawable/gl</item>
+    </style>
+    <style name="xm" parent="@style/gc">
+        <item name="android:background">@drawable/gm</item>
+    </style>
+    <style name="y8" parent="@style/gi">
+        <item name="b8">@drawable/gg</item>
+        <item name="be">@drawable/gg</item>
+        <item name="bf">@drawable/gg</item>
+    </style>
+    <style name="zt" parent="@style/gm">
+        <item name="android:background">@drawable/gq</item>
+    </style>
+    <style name="a2m" parent="@style/gu">
+        <item name="android:popupBackground">?attr/z5</item>
+        <item name="android:popupElevation">8dp</item>
+    </style>
+    <style name="a2n" parent="@style/gv">
+        <item name="android:popupBackground">?attr/z5</item>
+        <item name="android:popupElevation">8dp</item>
+    </style>
+</resources>

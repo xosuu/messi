@@ -1,0 +1,12 @@
+package com.google.android.gms.ads.mediation;
+
+import android.content.Context;
+import android.location.Location;
+import android.os.Bundle;
+
+/* JADX INFO: loaded from: classes.dex */
+public class MediationAppOpenAdConfiguration extends MediationAdConfiguration {
+    public MediationAppOpenAdConfiguration(Context context, String str, Bundle bundle, Bundle bundle2, boolean z9, Location location, int i10, int i11, String str2, String str3) {
+        super(context, str, bundle, bundle2, z9, location, i10, i11, str2, str3);
+    }
+}

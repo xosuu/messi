@@ -1,0 +1,6 @@
+package org.jasypt.encryption.pbe;
+
+/* JADX INFO: loaded from: classes.dex */
+public interface CleanablePasswordBased extends PasswordBased {
+    void setPasswordCharArray(char[] cArr);
+}

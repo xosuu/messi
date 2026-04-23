@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="k" parent="@style/nv">
+        <item name="android:windowBackground">@color/mv</item>
+        <item name="android:editTextStyle">@style/o</item>
+        <item name="gp">@color/b_</item>
+        <item name="he">@color/bb</item>
+        <item name="hg">@color/bc</item>
+        <item name="ko">@style/o</item>
+    </style>
+    <style name="o" parent="@android:style/Widget.EditText">
+        <item name="android:importantForAutofill">0x8</item>
+    </style>
+    <style name="bf" parent="@style/e7">
+    </style>
+    <style name="bm" parent="@style/e8">
+    </style>
+    <style name="e7" parent="@style/e1">
+        <item name="gw">?android:attr/colorError</item>
+    </style>
+    <style name="e8" parent="@style/e2">
+        <item name="gw">?android:attr/colorError</item>
+    </style>
+    <style name="e9" parent="@style/ei">
+        <item name="android:touchscreenBlocksFocus">true</item>
+        <item name="android:keyboardNavigationCluster">true</item>
+    </style>
+    <style name="g2" parent="@style/e9">
+    </style>
+    <style name="vo" parent="@android:style/Widget">
+        <item name="android:background">?attr/he</item>
+        <item name="android:stateListAnimator">@animator/a</item>
+        <item name="android:touchscreenBlocksFocus">true</item>
+        <item name="android:keyboardNavigationCluster">true</item>
+    </style>
+</resources>

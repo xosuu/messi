@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="bf" parent="@style/dz">
+    </style>
+    <style name="bm" parent="@style/e0">
+    </style>
+    <style name="dz" parent="@style/dn">
+        <item name="a2">?android:attr/actionModeShareDrawable</item>
+        <item name="km">?android:attr/editTextBackground</item>
+    </style>
+    <style name="e0" parent="@style/dp">
+        <item name="a2">?android:attr/actionModeShareDrawable</item>
+        <item name="km">?android:attr/editTextBackground</item>
+    </style>
+</resources>

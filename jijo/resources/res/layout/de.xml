@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="@integer/ae"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+    <include layout="@layout/dg"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/od"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/oc"
+            android:paddingLeft="@dimen/p8"
+            android:paddingRight="@dimen/p8"
+            android:paddingBottom="@dimen/p7"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingStart="@dimen/p8"
+            android:paddingEnd="@dimen/p8"/>
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/p5"
+            layout="@layout/dd"/>
+    </LinearLayout>
+</LinearLayout>

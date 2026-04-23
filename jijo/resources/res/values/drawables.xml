@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <drawable name="f3">?unknown_ref: 7f0801c8</drawable>
+    <drawable name="f5">?unknown_ref: 7f0801df</drawable>
+    <drawable name="f6">?unknown_ref: 7f0801e1</drawable>
+    <drawable name="gw">@drawable/gy</drawable>
+    <drawable name="gx">@drawable/gv</drawable>
+    <drawable name="ia">#3333b5e5</drawable>
+    <drawable name="ib">#0cffffff</drawable>
+</resources>

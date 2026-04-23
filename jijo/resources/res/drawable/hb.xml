@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt" android:drawable="@drawable/hi">
+    <target
+        android:name="@string/n_"
+        android:animation="@drawable/a3"/>
+    <target
+        android:name="@string/n_"
+        android:animation="@drawable/a4"/>
+    <target
+        android:name="@string/na"
+        android:animation="@drawable/a5"/>
+</animated-vector>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="bj">21sp</dimen>
+    <dimen name="bk">7dp</dimen>
+    <dimen name="e8">48dp</dimen>
+    <dimen name="e9">96dp</dimen>
+    <dimen name="el">315dp</dimen>
+    <dimen name="tq">600dp</dimen>
+    <dimen name="u2">16sp</dimen>
+    <dimen name="u3">64sp</dimen>
+</resources>

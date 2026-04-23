@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="c">48dp</dimen>
+    <dimen name="be">12dp</dimen>
+    <dimen name="bg">14dp</dimen>
+    <dimen name="c8">189dp</dimen>
+    <dimen name="dp">210dp</dimen>
+    <dimen name="dq">300dp</dimen>
+    <dimen name="ds">200dp</dimen>
+    <dimen name="du">24sp</dimen>
+    <dimen name="el">250dp</dimen>
+    <dimen name="nh">450dp</dimen>
+    <dimen name="ni">600dp</dimen>
+    <dimen name="ny">24dp</dimen>
+    <dimen name="o1">24dp</dimen>
+    <dimen name="pe">20dp</dimen>
+    <dimen name="pg">4dp</dimen>
+    <dimen name="pk">96dp</dimen>
+    <dimen name="pn">0dp</dimen>
+    <dimen name="po">0dp</dimen>
+    <dimen name="pp">104dp</dimen>
+    <dimen name="px">68dp</dimen>
+    <dimen name="pz">28dp</dimen>
+    <dimen name="q0">64dp</dimen>
+    <dimen name="q1">32dp</dimen>
+    <dimen name="q2">24dp</dimen>
+    <dimen name="q3">32dp</dimen>
+    <dimen name="tp">281dp</dimen>
+    <dimen name="tq">500dp</dimen>
+    <dimen name="ts">100dp</dimen>
+    <dimen name="tt">30dp</dimen>
+    <dimen name="tu">30dp</dimen>
+</resources>

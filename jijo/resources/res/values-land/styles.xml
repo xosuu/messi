@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="vw" parent="@style/g4">
+        <item name="a32">ed</item>
+        <item name="a3e">jf</item>
+    </style>
+    <style name="a24" parent="@style/vi">
+        <item name="android:textAppearance">?attr/a4b</item>
+        <item name="android:textColor">?attr/h3</item>
+        <item name="android:ellipsize">3</item>
+        <item name="android:layout_gravity">0x800033</item>
+        <item name="android:layout_width">-1</item>
+        <item name="android:layout_height">-2</item>
+        <item name="android:maxLines">@integer/af</item>
+    </style>
+    <style name="a27" parent="@style/gr">
+        <item name="android:layout_gravity">0x800053</item>
+    </style>
+</resources>

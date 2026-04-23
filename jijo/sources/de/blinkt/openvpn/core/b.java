@@ -1,0 +1,18 @@
+package de.blinkt.openvpn.core;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+import de.blinkt.openvpn.core.TrafficHistory;
+
+/* JADX INFO: loaded from: classes.dex */
+public final class b implements Parcelable.Creator {
+    @Override // android.os.Parcelable.Creator
+    public final Object createFromParcel(Parcel parcel) {
+        return new TrafficHistory.TrafficDatapoint(parcel);
+    }
+
+    @Override // android.os.Parcelable.Creator
+    public final Object[] newArray(int i10) {
+        return new TrafficHistory.TrafficDatapoint[i10];
+    }
+}

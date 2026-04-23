@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="md">0.16</dimen>
+    <dimen name="me">0.2</dimen>
+    <dimen name="mf">0.4</dimen>
+    <dimen name="mg">0.12</dimen>
+    <dimen name="r3">0.24</dimen>
+    <dimen name="r4">0.4</dimen>
+    <dimen name="r5">0.4</dimen>
+    <dimen name="r6">0.24</dimen>
+    <dimen name="r7">0.12</dimen>
+    <dimen name="r8">0.2</dimen>
+    <dimen name="r9">0.2</dimen>
+    <dimen name="r_">0.12</dimen>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="p7">4dp</dimen>
+    <dimen name="p9">18dp</dimen>
+    <dimen name="p_">40dp</dimen>
+    <dimen name="pa">2dp</dimen>
+    <dimen name="pc">2dp</dimen>
+    <dimen name="pd">40dp</dimen>
+    <dimen name="pe">40dp</dimen>
+    <dimen name="pr">4dp</dimen>
+</resources>

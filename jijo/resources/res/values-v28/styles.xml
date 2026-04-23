@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="bf" parent="@style/e_">
+    </style>
+    <style name="bm" parent="@style/ea">
+    </style>
+    <style name="dl" parent="@style/qu">
+        <item name="android:backgroundDimAmount">0.32</item>
+        <item name="android:checkedTextViewStyle">@style/a18</item>
+        <item name="android:dialogCornerRadius">@null</item>
+        <item name="ai">@style/hp</item>
+        <item name="dq">@style/a10</item>
+        <item name="dr">@style/a10</item>
+        <item name="ds">@style/a11</item>
+        <item name="dt">@style/a10</item>
+        <item name="tl">@style/hq</item>
+        <item name="tm">@integer/au</item>
+    </style>
+    <style name="e_" parent="@style/e7">
+        <item name="jr">?android:attr/dialogCornerRadius</item>
+    </style>
+    <style name="ea" parent="@style/e8">
+        <item name="jr">?android:attr/dialogCornerRadius</item>
+    </style>
+    <style name="mb" parent="@style/kf">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">0x0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing">0.0312</item>
+        <item name="android:lineHeight">24sp</item>
+        <item name="nu">sans-serif</item>
+        <item name="sw">24sp</item>
+    </style>
+    <style name="mc" parent="@style/ke">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">0x0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing">0.0179</item>
+        <item name="android:lineHeight">20sp</item>
+        <item name="nu">sans-serif</item>
+        <item name="sw">20sp</item>
+    </style>
+    <style name="md" parent="@style/kh">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">0x0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing">0.0333</item>
+        <item name="android:lineHeight">16sp</item>
+        <item name="nu">sans-serif</item>
+        <item name="sw">16sp</item>
+    </style>
+    <style name="me" parent="@style/kk">
+        <item name="android:textSize">57sp</item>
+        <item name="android:textStyle">0x0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing">-0.0044</item>
+        <item name="android:lineHeight">64sp</item>
+        <item name="nu">sans-serif</item>
+        <item name="sw">64sp</item>
+    </style>
+    <style name="mf" parent="@style/kj">
+        <item name="android:textSize">45sp</item>
+        <item name="android:textStyle">0x0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:lineHeight">52sp</item>
+        <item name="nu">sans-serif</item>
+        <item name="sw">52sp</item>
+    </style>
+    <style name="mg" parent="@style/ki">
+        <item name="android:textSize">36sp</item>
+        <item name="android:textStyle">0x0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:lineHeight">44sp</item>
+        <item name="nu">sans-serif</item>
+        <item name="sw">44sp</item>
+    </style>
+    <style name="mh" parent="@style/ki">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textStyle">0x0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:lineHeight">40sp</item>
+        <item name="nu">sans-serif</item>
+        <item name="sw">40sp</item>
+    </style>
+    <style name="mi" parent="@style/km">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textStyle">0x0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:lineHeight">36sp</item>
+        <item name="nu">sans-serif</item>
+        <item name="sw">36sp</item>
+    </style>
+    <style name="mj" parent="@style/l3">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">0x0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:lineHeight">32sp</item>
+        <item name="nu">sans-serif</item>
+        <item name="sw">32sp</item>
+    </style>
+    <style name="mk" parent="@style/ke">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">0x0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.0071</item>
+        <item name="android:lineHeight">20sp</item>
+        <item name="nu">sans-serif-medium</item>
+        <item name="sw">20sp</item>
+    </style>
+    <style name="ml" parent="@style/kh">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">0x0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.0417</item>
+        <item name="android:lineHeight">16sp</item>
+        <item name="nu">sans-serif-medium</item>
+        <item name="sw">16sp</item>
+    </style>
+    <style name="mm" parent="@style/kh">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textStyle">0x0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.0455</item>
+        <item name="android:lineHeight">16sp</item>
+        <item name="nu">sans-serif-medium</item>
+        <item name="sw">16sp</item>
+    </style>
+    <style name="mn" parent="@style/l3">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">0x0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:lineHeight">28sp</item>
+        <item name="nu">sans-serif</item>
+        <item name="sw">28sp</item>
+    </style>
+    <style name="mo" parent="@style/l1">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">0x0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.0094</item>
+        <item name="android:lineHeight">24sp</item>
+        <item name="nu">sans-serif-medium</item>
+        <item name="sw">24sp</item>
+    </style>
+    <style name="mp" parent="@style/l1">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">0x0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.0071</item>
+        <item name="android:lineHeight">20sp</item>
+        <item name="nu">sans-serif-medium</item>
+        <item name="sw">20sp</item>
+    </style>
+    <style name="w2" parent="@style/a0h">
+        <item name="android:outlineSpotShadowColor">@android:color/transparent</item>
+        <item name="android:outlineAmbientShadowColor">@android:color/transparent</item>
+        <item name="ss">true</item>
+    </style>
+    <style name="wa" parent="@style/g7">
+        <item name="android:outlineSpotShadowColor">@android:color/transparent</item>
+        <item name="android:outlineAmbientShadowColor">@android:color/transparent</item>
+    </style>
+    <style name="zg" parent="@android:style/Widget">
+        <item name="android:textAppearance">@style/n5</item>
+        <item name="android:minHeight">@dimen/ko</item>
+        <item name="android:paddingStart">@dimen/ks</item>
+        <item name="android:outlineSpotShadowColor">@android:color/transparent</item>
+        <item name="android:outlineAmbientShadowColor">@android:color/transparent</item>
+        <item name="jk">true</item>
+        <item name="jm">true</item>
+        <item name="kp">@dimen/kn</item>
+        <item name="l3">true</item>
+        <item name="om">false</item>
+        <item name="up">@style/sa</item>
+        <item name="uv">@dimen/ko</item>
+        <item name="a0l">?attr/a0s</item>
+        <item name="a0t">@style/k0</item>
+    </style>
+    <style name="a07" parent="@style/vk">
+        <item name="android:outlineSpotShadowColor">@android:color/transparent</item>
+        <item name="android:outlineAmbientShadowColor">@android:color/transparent</item>
+        <item name="i_">0dp</item>
+        <item name="a2p">?attr/a4v</item>
+        <item name="a6k">?attr/a4u</item>
+    </style>
+</resources>

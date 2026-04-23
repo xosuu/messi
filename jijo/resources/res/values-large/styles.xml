@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="bl" parent="@style/bj">
+    </style>
+    <style name="bs" parent="@style/bq">
+    </style>
+    <style name="c9" parent="@style/c7">
+    </style>
+    <style name="ci" parent="@style/cg">
+    </style>
+    <style name="os" parent="@style/bv">
+        <item name="a8_">@dimen/a2</item>
+        <item name="a8a">@dimen/a3</item>
+        <item name="a8b">@dimen/a4</item>
+        <item name="a8c">@dimen/a5</item>
+    </style>
+    <style name="pa" parent="@style/bz">
+        <item name="a8_">@dimen/a2</item>
+        <item name="a8a">@dimen/a3</item>
+        <item name="a8b">@dimen/a4</item>
+        <item name="a8c">@dimen/a5</item>
+    </style>
+</resources>

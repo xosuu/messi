@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="tr">230dp</dimen>
+    <dimen name="ts">100dp</dimen>
+    <dimen name="tt">30dp</dimen>
+    <dimen name="tu">30dp</dimen>
+</resources>

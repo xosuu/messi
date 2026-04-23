@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pathInterpolator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:controlX1="@dimen/le"
+    android:controlY1="@dimen/lg"
+    android:controlX2="@dimen/lf"
+    android:controlY2="@dimen/lh"/>

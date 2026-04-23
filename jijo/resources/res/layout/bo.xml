@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="@dimen/bh"
+    android:paddingTop="@dimen/bi"
+    android:paddingRight="@dimen/bh"
+    android:paddingBottom="@dimen/bi"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    fab:layout_behavior="@string/bu">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <team.dev.epro.apkcustom.widgets.logger.LogView
+            android:id="@+id/mx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <com.github.clans.fab.FloatingActionButton
+        android:layout_gravity="end|bottom"
+        android:id="@+id/j2"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/e2"
+        android:src="0x7f0801ae"
+        fab:fab_colorNormal="@color/b_"
+        fab:fab_colorPressed="@color/bc"
+        fab:menu_shadowColor="#ff444444"/>
+</FrameLayout>

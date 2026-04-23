@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="nx" parent="@style/nv">
+    </style>
+    <style name="ny" parent="@style/nv">
+    </style>
+    <style name="nz" parent="@style/o4">
+    </style>
+    <style name="o0" parent="@style/o5">
+    </style>
+    <style name="o1" parent="@style/o6">
+    </style>
+    <style name="o2" parent="@style/o7">
+    </style>
+    <style name="o3" parent="@style/of">
+    </style>
+    <style name="ov" parent="@style/on">
+    </style>
+    <style name="ow" parent="@style/oo">
+    </style>
+    <style name="ox" parent="@style/op">
+    </style>
+    <style name="oy" parent="@style/oq">
+    </style>
+    <style name="oz" parent="@style/or">
+    </style>
+    <style name="p0" parent="@style/os">
+    </style>
+    <style name="p1" parent="@style/ot">
+    </style>
+    <style name="p2" parent="@style/ou">
+    </style>
+    <style name="p4" parent="@style/p3">
+    </style>
+    <style name="ph" parent="@style/pd">
+    </style>
+    <style name="pi" parent="@style/pe">
+    </style>
+    <style name="pj" parent="@style/pf">
+    </style>
+    <style name="pk" parent="@style/pd">
+    </style>
+    <style name="pl" parent="@style/pf">
+    </style>
+    <style name="pm" parent="@style/px">
+    </style>
+    <style name="pn" parent="@style/py">
+    </style>
+    <style name="po" parent="@style/pz">
+    </style>
+    <style name="pp" parent="@style/q0">
+    </style>
+    <style name="pq" parent="@style/q1">
+    </style>
+    <style name="pr" parent="@style/q2">
+    </style>
+    <style name="ps" parent="@style/q3">
+    </style>
+    <style name="pt" parent="@style/q4">
+    </style>
+    <style name="pu" parent="@style/q5">
+    </style>
+    <style name="pv" parent="@style/ql">
+    </style>
+    <style name="pw" parent="@style/qm">
+    </style>
+    <style name="qr" parent="@style/qp">
+    </style>
+    <style name="ro" parent="@style/rn">
+    </style>
+    <style name="a0b" parent="@style/a0d">
+    </style>
+    <style name="a0g" parent="@style/a0h">
+    </style>
+    <style name="a0p" parent="@style/a0n">
+    </style>
+    <style name="a0s" parent="@style/a0q">
+    </style>
+    <style name="a2j" parent="@style/a2f">
+    </style>
+    <style name="a2x" parent="@style/a2v">
+    </style>
+    <style name="a3m" parent="@style/a3n">
+    </style>
+</resources>
