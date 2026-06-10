@@ -67,6 +67,7 @@ func main(){
 	
 
 	
+	
 	//Dominio padre
 	dominioPadre := domain.Domain{Name: dominio, Ip: funcs.CheckIp(dominio, true)}
 	dominioPadre.CheckNs()

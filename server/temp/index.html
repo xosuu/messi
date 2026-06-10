@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoExchange | Compra USDT de forma segura</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/fontsource-inter@4.5.1/index.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            900: '#14532d',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0f172a;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(34, 197, 94, 0.1) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(59, 130, 246, 0.1) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(34, 197, 94, 0.05) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+        #comprar{
+            width: 100%;
+            height: auto;
+            display: none;
+            
+        }
+       
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .input-field {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            transition: all 0.3s ease;
+        }
+        .input-field:focus {
+            border-color: #22c55e;
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15);
+            outline: none;
+        }
+        .file-drop-zone {
+            border: 2px dashed rgba(148, 163, 184, 0.3);
+            transition: all 0.3s ease;
+        }
+        .file-drop-zone:hover, .file-drop-zone.dragover {
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, 0.05);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        .accordion-content.active {
+            max-height: 200px;
+        }
+    </style>
+</head>
+<body class="text-slate-300 antialiased">
+
+    <!-- Navbar -->
+    <nav class="glass-nav fixed w-full z-50 top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-brand-500 flex items-center justify-center text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <span class="text-xl font-bold text-white tracking-tight">CryptoExchange</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#inicio" class="text-sm font-medium hover:text-brand-400 transition-colors">Inicio</a>
+                    <a href="#acerca" class="text-sm font-medium hover:text-brand-400 transition-colors">Acerca de</a>
+                    <a href="#seguridad" class="text-sm font-medium hover:text-brand-400 transition-colors">Seguridad</a>
+                    <a href="#faq" class="text-sm font-medium hover:text-brand-400 transition-colors">FAQ</a>
+                    <a href="#comprar"  class="btn-comprar bg-brand-600 hover:bg-brand-500 text-white text-sm font-semibold py-2 px-5 rounded-lg transition-all duration-300 shadow-lg shadow-brand-900/20">Comprar USDT</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobileMenuBtn" class="text-slate-300 hover:text-white p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden glass-panel border-t border-slate-700/50">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#inicio" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-800 hover:text-brand-400">Inicio</a>
+                <a href="#acerca" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-800 hover:text-brand-400">Acerca de</a>
+                <a href="#seguridad" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-800 hover:text-brand-400">Seguridad</a>
+                <a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-800 hover:text-brand-400">FAQ</a>
+                <a href="#comprar"  class="btn-comprar block px-3 py-2 mt-4 text-center rounded-md text-base font-semibold bg-brand-600 text-white hover:bg-brand-500">Comprar USDT</a>
+            </div>
+        </div>
+    </nav>
+
+    
+    <!-- Purchase Form Section -->
+    <section id="comprar" class="py-20 px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-lg mx-auto">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-white mb-2">Solicitar Compra</h2>
+                <p class="text-slate-400">Completa los datos a continuación para iniciar tu transacción.</p>
+            </div>
+
+            <div class="glass-panel rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-700/50">
+                <form id="usdtForm" class="space-y-6">
+                    
+                    <!-- Wallet ID -->
+                    <div class="space-y-2">
+                        <label for="walletId" class="text-sm font-medium text-slate-300 flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                            ID de Billetera (TRC20 / ERC20)
+                        </label>
+                        <input type="text" id="walletId" required placeholder="Ej: TXYZ... o 0x..." 
+                            class="input-field w-full rounded-xl px-4 py-3 text-white placeholder-slate-500">
+                    </div>
+
+                    <!-- Amounts Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <label for="usdtAmount" class="text-sm font-medium text-slate-300 flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>
+                                Monto en USDT
+                            </label>
+                            <input type="number" id="usdtAmount" required min="1" step="0.01" placeholder="0.00" 
+                                class="input-field w-full rounded-xl px-4 py-3 text-white placeholder-slate-500">
+                        </div>
+                        
+                        <div class="space-y-2">
+                            <label for="localAmount" class="text-sm font-medium text-slate-300 flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                                Monto a Depositar
+                            </label>
+                            <div class="relative">
+                                <input type="text" id="localAmount" readonly 
+                                    class="input-field w-full rounded-xl px-4 py-3 text-brand-400 font-semibold bg-slate-900/50 cursor-not-allowed">
+                                <span class="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-slate-500 font-medium">LOCAL</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Tasa: 1 USDT = <span id="exchangeRateDisplay">35.50</span></p>
+                        </div>
+                    </div>
+
+                    <!-- File Upload -->
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium text-slate-300 flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                            Comprobante de Pago
+                        </label>
+                        <div class="file-drop-zone rounded-xl p-6 text-center cursor-pointer relative" id="dropZone">
+                            <input type="file" id="paymentProof" accept="image/*,.pdf" required class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                            <div id="uploadPrompt" class="space-y-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-slate-400"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                                <p class="text-sm text-slate-300">Arrastra tu comprobante o <span class="text-brand-400 font-medium">haz clic para buscar</span></p>
+                                <p class="text-xs text-slate-500">PNG, JPG o PDF (Máx. 10MB)</p>
+                            </div>
+                            <div id="filePreview" class="hidden flex items-center justify-center gap-3 bg-slate-800/50 rounded-lg p-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                <span id="fileName" class="text-sm text-slate-200 truncate max-w-[200px]"></span>
+                                <button type="button" id="removeFile" class="text-slate-400 hover:text-red-400 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="submitBtn" class="w-full bg-brand-600 hover:bg-brand-500 text-white font-semibold py-3.5 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-brand-900/20 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
+                        <span id="btnText">Enviar Solicitud</span>
+                        <svg id="btnIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        <svg id="loadingSpinner" class="hidden animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    </button>
+                    <!--close button-->
+                    <button id="btn-cerrar" class="w-full bg-red-600 hover:bg-red-800 text-white font-semibold py-3.5 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-brand-900/20 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none" >Cerrar</button>
+                </form>
+
+                <!-- Status Messages -->
+                <div id="statusMessage" class="hidden mt-4 p-4 rounded-xl text-sm font-medium animate-fade-in"></div>
+            </div>
+        </div>
+        
+        
+    </section>
+
+
+
+    <!-- Hero Section -->
+    <section id="inicio" class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
+        <div class="animate-slide-up">
+            <!-- <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-sm font-medium mb-6">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
+                </span>
+                Servicio disponible 24/7
+            </div> -->
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6">
+                Compra <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-emerald-600">USDT</span> de forma rápida y segura
+            </h1>
+            <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10">
+                La plataforma más confiable para adquirir stablecoins. Sin intermediarios, sin almacenamiento de datos y con las mejores tasas del mercado.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#comprar" class="btn-comprar bg-brand-600 hover:bg-brand-500 text-white font-semibold py-3.5 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg shadow-brand-900/30 flex items-center justify-center gap-2">
+                    Comprar Ahora
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+                <a href="#seguridad" class="glass-panel hover:bg-slate-800/80 text-white font-semibold py-3.5 px-8 rounded-xl transition-all duration-300 flex items-center justify-center gap-2">
+                    Conoce más
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="acerca" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <h2 class="text-3xl font-bold text-white">Acerca de nuestro servicio</h2>
+                <p class="text-slate-400 leading-relaxed">
+                    Somos un servicio de intercambio peer-to-peer diseñado para ofrecerte la mejor experiencia al adquirir USDT. Nuestro objetivo es eliminar las barreras tradicionales de los exchanges centralizados, ofreciendo un proceso directo, transparente y eficiente.
+                </p>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3">
+                        <div class="w-6 h-6 rounded-full bg-brand-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <span class="text-slate-300">Tasas de cambio competitivas y actualizadas en tiempo real.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <div class="w-6 h-6 rounded-full bg-brand-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <span class="text-slate-300">Procesamiento manual verificado para máxima seguridad.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <div class="w-6 h-6 rounded-full bg-brand-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <span class="text-slate-300">Soporte directo a través de Telegram.</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="relative">
+                <div class="absolute inset-0 bg-brand-500/20 blur-3xl rounded-full"></div>
+                <div class="relative glass-panel rounded-2xl p-8 border border-slate-700/50">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center p-4 rounded-xl bg-slate-800/50">
+                            <div class="text-3xl font-bold text-white mb-1">+10k</div>
+                            <div class="text-sm text-slate-400">Transacciones</div>
+                        </div>
+                        <div class="text-center p-4 rounded-xl bg-slate-800/50">
+                            <div class="text-3xl font-bold text-brand-400 mb-1">99.9%</div>
+                            <div class="text-sm text-slate-400">Tasa de éxito</div>
+                        </div>
+                        <div class="text-center p-4 rounded-xl bg-slate-800/50">
+                            <div class="text-3xl font-bold text-white mb-1">&lt;15m</div>
+                            <div class="text-sm text-slate-400">Tiempo promedio</div>
+                        </div>
+                        <div class="text-center p-4 rounded-xl bg-slate-800/50">
+                            <div class="text-3xl font-bold text-brand-400 mb-1">24/7</div>
+                            <div class="text-sm text-slate-400">Disponibilidad</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Section -->
+    <section id="seguridad" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold text-white mb-4">Tu seguridad es nuestra prioridad</h2>
+                <p class="text-slate-400">Hemos diseñado nuestro flujo de trabajo para minimizar riesgos y proteger tu información en cada paso del proceso.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-panel p-8 rounded-2xl hover:border-brand-500/30 transition-colors duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Sin Almacenamiento de Datos</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">No utilizamos bases de datos. Tu información se envía directamente a nuestro canal seguro de Telegram y se procesa al instante.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-panel p-8 rounded-2xl hover:border-brand-500/30 transition-colors duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-400 mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Encriptación de Extremo a Extremo</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Todas las comunicaciones con nuestra API utilizan los protocolos de seguridad oficiales de Telegram, garantizando privacidad total.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-panel p-8 rounded-2xl hover:border-brand-500/30 transition-colors duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Verificación Manual</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Cada comprobante de pago es revisado por un operador humano antes de liberar los fondos, previniendo fraudes y errores.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-white mb-4">Preguntas Frecuentes</h2>
+            <p class="text-slate-400">Resolvemos tus dudas más comunes sobre el proceso de compra.</p>
+        </div>
+
+        <div class="space-y-4">
+            <!-- FAQ Item 1 -->
+            <div class="glass-panel rounded-xl overflow-hidden">
+                <button class="accordion-btn w-full px-6 py-4 text-left flex items-center justify-between focus:outline-none">
+                    <span class="font-medium text-white">¿Cuánto tiempo tarda en llegar mi USDT?</span>
+                    <svg class="accordion-icon w-5 h-5 text-slate-400 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="accordion-content px-6">
+                    <p class="text-slate-400 text-sm pb-4">Una vez que recibimos y verificamos tu comprobante de pago, el envío de USDT a tu billetera suele tomar entre 5 y 15 minutos, dependiendo de la congestión de la red.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="glass-panel rounded-xl overflow-hidden">
+                <button class="accordion-btn w-full px-6 py-4 text-left flex items-center justify-between focus:outline-none">
+                    <span class="font-medium text-white">¿Qué redes de USDT aceptan?</span>
+                    <svg class="accordion-icon w-5 h-5 text-slate-400 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="accordion-content px-6">
+                    <p class="text-slate-400 text-sm pb-4">Actualmente operamos principalmente con la red TRC20 (Tron) por sus bajas comisiones, pero también podemos procesar solicitudes en ERC20 (Ethereum) o BEP20 (BSC). Especifica tu preferencia en el formulario.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="glass-panel rounded-xl overflow-hidden">
+                <button class="accordion-btn w-full px-6 py-4 text-left flex items-center justify-between focus:outline-none">
+                    <span class="font-medium text-white">¿Es seguro enviar mi comprobante por este sitio?</span>
+                    <svg class="accordion-icon w-5 h-5 text-slate-400 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="accordion-content px-6">
+                    <p class="text-slate-400 text-sm pb-4">Absolutamente. El sitio no guarda el archivo en ningún servidor. El comprobante se envía directamente mediante una petición segura a la API de Telegram, que cuenta con encriptación de grado militar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-900/80 py-12 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-brand-500 flex items-center justify-center text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <span class="text-lg font-bold text-white">CryptoExchange</span>
+            </div>
+            <div class="text-slate-500 text-sm text-center md:text-right">
+                <p>&copy; 2023 CryptoExchange. Todos los derechos reservados.</p>
+                <p class="mt-1">Tus datos se envían de forma segura y no se almacenan en ninguna base de datos.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ==========================================
+        // CONFIGURACIÓN DE TELEGRAM
+        // Reemplaza estos valores con los de tu bot
+        // ==========================================
+        const TELEGRAM_CONFIG = {
+            BOT_TOKEN: '6782993515:AAHZQygJIzlYhxtFgSx2TWGq6llERK5NENY', 
+            CHAT_ID: '1670980553'      
+        };
+
+        // Tasa de cambio (1 USDT = X Moneda Local)
+        const EXCHANGE_RATE = 35.50; 
+
+        // Elementos del DOM
+        const form = document.getElementById('usdtForm');
+        const walletIdInput = document.getElementById('walletId');
+        const usdtAmountInput = document.getElementById('usdtAmount');
+        const localAmountInput = document.getElementById('localAmount');
+        const exchangeRateDisplay = document.getElementById('exchangeRateDisplay');
+        const paymentProofInput = document.getElementById('paymentProof');
+        const dropZone = document.getElementById('dropZone');
+        const uploadPrompt = document.getElementById('uploadPrompt');
+        const filePreview = document.getElementById('filePreview');
+        const fileNameSpan = document.getElementById('fileName');
+        const removeFileBtn = document.getElementById('removeFile');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const btnIcon = document.getElementById('btnIcon');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const statusMessage = document.getElementById('statusMessage');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        // Inicializar tasa de cambio en UI
+        exchangeRateDisplay.textContent = EXCHANGE_RATE.toFixed(2);
+
+        // Mobile Menu Toggle
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Cálculo automático de conversión
+        usdtAmountInput.addEventListener('input', function() {
+            const usdtValue = parseFloat(this.value);
+            if (!isNaN(usdtValue) && usdtValue > 0) {
+                const localValue = (usdtValue * EXCHANGE_RATE).toFixed(2);
+                localAmountInput.value = localValue;
+            } else {
+                localAmountInput.value = '';
+            }
+        });
+
+        // Manejo de archivos (Drag & Drop visual y selección)
+        paymentProofInput.addEventListener('change', handleFileSelect);
+        
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('dragover');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            if (e.dataTransfer.files.length) {
+                paymentProofInput.files = e.dataTransfer.files;
+                handleFileSelect();
+            }
+        });
+
+        function handleFileSelect() {
+            const file = paymentProofInput.files[0];
+            if (file) {
+                if (file.size > 10 * 1024 * 1024) {
+                    showStatus('El archivo es demasiado grande. Máximo 10MB.', 'error');
+                    paymentProofInput.value = '';
+                    return;
+                }
+                fileNameSpan.textContent = file.name;
+                uploadPrompt.classList.add('hidden');
+                filePreview.classList.remove('hidden');
+                filePreview.classList.add('flex');
+                hideStatus();
+            }
+        }
+
+        removeFileBtn.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            paymentProofInput.value = '';
+            uploadPrompt.classList.remove('hidden');
+            filePreview.classList.add('hidden');
+            filePreview.classList.remove('flex');
+        });
+
+        //------------------------
+        
+        let btn = document.querySelectorAll(".btn-comprar");
+        let btnClose = document.getElementById("btn-cerrar");
+        let section = document.getElementById("comprar")
+
+        btn.forEach(b => {
+            b.addEventListener("click", ()=>{
+            section.style.display = "flex";
+            section.style.flexDirection = "column";
+            })
+        })
+        btnClose.addEventListener("click", ()=>{
+            section.style.display = "none";
+        })
+
+
+       
+
+        //-----------------------
+
+        // Envío del formulario
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            hideStatus();
+
+            if (TELEGRAM_CONFIG.BOT_TOKEN === 'TU_BOT_TOKEN_AQUI' || TELEGRAM_CONFIG.CHAT_ID === 'TU_CHAT_ID_AQUI') {
+                showStatus('Error de configuración: Debes establecer el BOT_TOKEN y CHAT_ID en el código.', 'error');
+                return;
+            }
+
+            const file = paymentProofInput.files[0];
+            if (!file) {
+                showStatus('Por favor, adjunta el comprobante de pago.', 'error');
+                return;
+            }
+
+            setLoading(true);
+
+            try {
+                const formData = new FormData();
+                formData.append('chat_id', TELEGRAM_CONFIG.CHAT_ID);
+                formData.append('photo', file);
+                
+                const caption = `🚀 *Nueva Solicitud de Compra USDT*\n\n` +
+                                `💼 *Billetera:* \`${walletIdInput.value}\`\n` +
+                                `💵 *Monto USDT:* ${usdtAmountInput.value} USDT\n` +
+                                `💱 *Monto Local:* ${localAmountInput.value}\n\n` +
+                                `✅ Comprobante adjunto.`;
+                
+                formData.append('caption', caption);
+                formData.append('parse_mode', 'Markdown');
+
+                const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_CONFIG.BOT_TOKEN}/sendPhoto`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.ok) {
+                    showStatus('¡Solicitud enviada con éxito! Nos pondremos en contacto contigo pronto.', 'success');
+                    form.reset();
+                    uploadPrompt.classList.remove('hidden');
+                    filePreview.classList.add('hidden');
+                    filePreview.classList.remove('flex');
+                    localAmountInput.value = '';
+                } else {
+                    throw new Error(result.description || 'Error al enviar a Telegram');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showStatus('Error al enviar la solicitud. Por favor, intenta de nuevo.', 'error');
+            } finally {
+                setLoading(false);
+            }
+        });
+
+        // Funciones auxiliares de UI
+        function setLoading(isLoading) {
+            submitBtn.disabled = isLoading;
+            if (isLoading) {
+                btnText.textContent = 'Enviando...';
+                btnIcon.classList.add('hidden');
+                loadingSpinner.classList.remove('hidden');
+            } else {
+                btnText.textContent = 'Enviar Solicitud';
+                btnIcon.classList.remove('hidden');
+                loadingSpinner.classList.add('hidden');
+            }
+        }
+
+        function showStatus(message, type) {
+            statusMessage.textContent = message;
+            statusMessage.classList.remove('hidden', 'bg-red-500/10', 'text-red-400', 'border-red-500/20', 'bg-green-500/10', 'text-green-400', 'border-green-500/20');
+            
+            if (type === 'error') {
+                statusMessage.classList.add('bg-red-500/10', 'text-red-400', 'border', 'border-red-500/20');
+            } else {
+                statusMessage.classList.add('bg-green-500/10', 'text-green-400', 'border', 'border-green-500/20');
+            }
+        }
+
+        function hideStatus() {
+            statusMessage.classList.add('hidden');
+        }
+
+        // FAQ Accordion Logic
+        document.querySelectorAll('.accordion-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('.accordion-icon');
+                
+                // Toggle current
+                content.classList.toggle('active');
+                if (content.classList.contains('active')) {
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    icon.style.transform = 'rotate(0deg)';
+                }
+
+                // Close others (optional, for accordion behavior)
+                document.querySelectorAll('.accordion-content').forEach(otherContent => {
+                    if (otherContent !== content && otherContent.classList.contains('active')) {
+                        otherContent.classList.remove('active');
+                        otherContent.previousElementSibling.querySelector('.accordion-icon').style.transform = 'rotate(0deg)';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
